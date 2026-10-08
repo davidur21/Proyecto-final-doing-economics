@@ -1,4 +1,4 @@
-#Documentación
+**Documentación
 
 Universidad del Rosario · Haciendo Economía 2026-2 Profesor: Paul Rodríguez L. Estudiantes: Samuel Mora, Mariana Muñoz, Camilo Ospina, Emily Rodríguez y David Pascagaza
 
