@@ -7,7 +7,7 @@
 </p>
 
 <p align="center"><b>¿Quién paga la diferencia? Encuesta a clientes de cafeterías de especialidad en Chapinero</b><br>
-La diligencia el encuestador en campo · 3 a 4 minutos </p>
+La diligencia el encuestador en campo - 3 a 4 minutos </p>
 
 <p align="center"><a href="https://forms.gle/ge92uLH7chhg1UxJA">https://forms.gle/ge92uLH7chhg1UxJA</a></p>
 
