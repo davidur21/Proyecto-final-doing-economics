@@ -16,7 +16,7 @@ Esta carpeta tiene la **estructura de la base de datos** de la encuesta, lista a
 |---|---|
 | `base_estructura_fila_ficticia.csv` | La base: una fila por encuesta y una columna por variable (54), en el orden del cuestionario, con una observación ficticia |
 | `diccionario_variables.csv` | Cada variable con el título de su pregunta en el formulario, el tipo, los valores permitidos, el valor de la fila ficticia y su origen (formulario o derivada) |
-| `hoja_tiendas.csv` | Las 27 cafeterías de la ruta con su código (T01 a T27), día, zona, rol (principal o reserva), pareja y turno, y las columnas de verificación del criterio que se llenan en campo |
+| `hoja_tiendas.csv` | Las 27 cafeterías de la ruta con su código (T01 a T27), dirección, coordenadas y enlace de Google Maps, día, zona, rol (principal o reserva), pareja y turno, y las columnas de verificación del criterio que se llenan en campo. Coincide con `Documentacion/Plan de ruta.pdf` |
 
 ## 🔑 Identificadores
 
