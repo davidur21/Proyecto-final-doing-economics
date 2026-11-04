@@ -37,13 +37,16 @@ La prensa económica reporta que en Colombia el sabor desplazó al precio como p
 | **Unidad de observación** | Cliente encuestado en una visita |
 | **Marco teórico** | Bienes como canasta de características (Lancaster, 1966), DAP y curva de demanda, bienes de experiencia y credibilidad (Nelson, 1970; Darby y Karni, 1973), calidad percibida (Zeithaml, 1988) y adicción racional (Becker y Murphy, 1988) |
 | **Revisión de literatura** | Protocolo PRISMA 2020: 86 registros identificados, 32 fuentes incluidas |
+| **Instrumento** | Encuesta presencial en Google Forms; DAP con una escalera de 13 precios, de $50.000 a $1.500 |
+| **Trabajo de campo** | 27 cafeterías de Chapinero (16 principales y 11 de reserva), meta de 160 encuestas |
 
 ## 📂 Estructura del repositorio
 
 ```
 Proyecto-final-doing-economics/
-├── Documentacion/    # Entregas, informe y soportes del proyecto
-├── Encuesta/    # Link encuesta de forms
+├── Documentacion/   # Entregas, informe final, plan de ruta y protocolo de trabajo de campo
+├── Encuesta/        # Enlace y estructura de la encuesta en Google Forms
+├── Datos/           # Estructura de la base, diccionario de variables y hoja de tiendas
 └── README.md
 ```
 

@@ -13,7 +13,7 @@
 | `Entrega 1 y 2a doing economics.docx` | Pregunta de investigación, motivación y primera revisión de literatura |
 | `Entrega 2b - literatura y marco teórico.docx` | Revisión de literatura y marco teórico |
 | **`Informe Final.docx`** | **Documento final del proyecto** |
-| **`Plan de ruta (proyecto final).pdf`** | **Cafeterías de Chapinero que vamos a visitar y recorrido del trabajo de campo** |
+| **`Plan de ruta.pdf`** | **Cafeterías de Chapinero que vamos a visitar y recorrido del trabajo de campo** |
 | **`Protocolo de trabajo de campo.pdf`** | **Protocolo de la encuesta: diseño, muestra, cuestionario, consentimiento, logística y plan de análisis** |
 
 > **`Informe Final.docx` es la versión definitiva del proyecto.** Reúne todas las correcciones del profesor en las entregas anteriores: motivación con la fuente central (Jaimes, 2026) separada de nuestra interpretación, pregunta general y preguntas específicas integradas, alcance en Chapinero, marco teórico condensado con su diagrama, modelo de decisión de compra (insumos, actividades, productos y resultados), revisión de literatura con protocolo PRISMA 2020 y referencias en APA 7. Las entregas anteriores se conservan solo como historial.
@@ -22,22 +22,26 @@
 
 ## 🗺️ Plan de ruta para la encuesta
 
-El detalle completo está en [`Plan de ruta (proyecto final).pdf`](./Plan%20de%20ruta%20(proyecto%20final).pdf): las cafeterías que vamos a visitar y el orden del recorrido.
+El detalle completo está en [`Plan de ruta.pdf`](./Plan%20de%20ruta.pdf): las cafeterías que vamos a visitar y el orden del recorrido.
 
 - **Zona:** Chapinero, Bogotá.
-- **Instrumento:** cuestionario en Google Forms (de 5 a 6 minutos). La disposición a pagar se pregunta con una escalera de precios que baja desde $18.000 hasta el precio de un tinto.
+- **Instrumento:** cuestionario en Google Forms (de 5 a 6 minutos). La disposición a pagar se pregunta con una escalera de 13 precios que empieza en un valor improbable, $50.000, y baja hasta $1.500, el precio de un tinto.
+- **Cobertura:** 27 cafeterías candidatas (T01 a T27): 16 en la muestra principal y 11 de reserva. Meta: 160 encuestas, 10 por tienda.
 - **Población:** clientes de 18 años o más que compraron una bebida en la cafetería.
-- **Criterio para incluir una cafetería:** ofrece al menos un método de filtrado manual, informa el origen del café y prepara en barra con barista. Se verifica antes de encuestar.
+- **Criterio para incluir una cafetería:** ofrece al menos un método de filtrado manual, informa el origen del café y prepara en barra con barista. Se verifica en cada local, al llegar, y queda registrado en [`Datos/hoja_tiendas.csv`](../Datos/hoja_tiendas.csv).
 
 ## 📋 Protocolo de trabajo de campo
 
 En [`Protocolo de trabajo de campo.pdf`](./Protocolo%20de%20trabajo%20de%20campo.pdf) está cómo se aplica la encuesta:
 
-- diseño del estudio y selección de tiendas;
-- bebida de referencia y escalera de disposición a pagar;
-- orden de los módulos del cuestionario;
+- diseño del estudio, tiendas principales y de reserva, y verificación del criterio en cada local;
+- meta efectiva (160 encuestas), parejas, responsables y turnos;
+- bebida de referencia y escalera de disposición a pagar desde $50.000;
+- orden del cuestionario: el reto cafetero va **antes** de la escalera y no pregunta por V60 ni por origen;
+- preguntas que se pueden omitir sin inventar cifras;
+- archivo de datos, identificadores y una observación ficticia (ver [`Datos/`](../Datos));
+- logística de campo y política de videos (sin personas identificables; autorización por escrito si se filma a un encuestado);
 - consentimiento informado (Ley 1581 de 2012);
-- logística de campo;
 - plan de análisis estadístico.
 
 ---
