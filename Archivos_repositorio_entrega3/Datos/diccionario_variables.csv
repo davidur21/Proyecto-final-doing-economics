@@ -1,0 +1,55 @@
+#,variable,título en el formulario (columna de la exportación),tipo,valores permitidos,valor en la fila ficticia,origen
+1,id_encuesta,(se crea en la limpieza),texto,Código de tienda (Z2) - iniciales del encuestador (Z1) - consecutivo del encuestador en el día,T01-DP-01,derivada
+2,registro_ficticio,(se crea en la limpieza),sí/no,"Sí = fila de ejemplo, se borra antes del análisis",Sí,derivada
+3,marca_temporal,Marca temporal,fecha-hora,La pone Forms al enviar,2026-11-04 09:42:17,formulario
+4,z1_encuestador,Z1. Encuestador,categórica,Santiago Gómez; Camilo Ospina; David Pascagaza; Emily Rodríguez,David Pascagaza,formulario
+5,z2_tienda,Z2. Cafetería,texto,Lista: T01 · nombre … T27 · nombre (hoja de tiendas); el código son los 3 primeros caracteres,T01 · Varietale Javeriana,formulario
+6,z3_franja,Franja (Horario que se realizó la encuesta),categórica,Mañana; Mediodía; Tarde,Mañana,formulario
+7,a1_consiente,A1. ¿Acepta participar?,categórica,Sí; No (fin),Sí,formulario
+8,a2_mayor18,"A2. ""¿Tiene 18 años o más?""",categórica,Sí; No (fin),Sí,formulario
+9,a3_compro,"A3. ""¿Compró usted, o le compraron, una bebida aquí hoy?""",categórica,Sí; No (fin),Sí,formulario
+10,a4_ya_respondio,"A4. ""¿Ya respondió esta encuesta antes, aquí o en otra cafetería?""",categórica,No; Sí (fin),No,formulario
+11,b1_bebida,"B1. ""Para empezar, ¿qué bebida compró hoy?""",categórica,5 bebidas; Prefiere no responder,Espresso o americano,formulario
+12,c1_frec_especialidad,C1. Frecuencia en cafeterías de especialidad,ordinal,Menos de 1 al mes … 5 o más por semana; Prefiere no responder,1 vez por semana,formulario
+13,c2_frec_tienda,C2. Frecuencia en esta cafetería,ordinal,Primera vez … 1 vez por semana o más; Prefiere no responder,Menos de una vez al mes,formulario
+14,c3_lugar_habitual,C3. Dónde toma café la mayoría de los días,categórica,6 lugares; Prefiere no responder,En casa,formulario
+15,c4_motivo,C4. Motivo de la visita (opcional),categórica,5 motivos; vacío,A trabajar o estudiar,formulario
+16,d1_autoeval,"D1. ""De 1 a 5, ¿cuánto sabe de café?"" (opcional)",entero,1 a 5; vacío,3,formulario
+17,d2_especies,D2. Especies de café más cultivadas,categórica,Arábica y robusta (acierto); Caturra y castillo; Excelso y supremo; No sé,Arábica y robusta,formulario
+18,d3_tostion,D3. Tostión clara frente a oscura,categórica,Más acidez y notas frutales (acierto); Más cuerpo y amargor; Más sabor a quemado; No sé,Más acidez y notas frutales,formulario
+19,d4_proceso,"D4. ""Lavado"" o ""natural""",categórica,Cómo se procesó el grano (acierto); Tostión; Variedad; No sé,Cómo se procesó el grano después de la cosecha,formulario
+20,d5_puntaje85,D5. Café de 85 puntos,categórica,Calificación en taza (acierto); Cafeína; Precio por libra; No sé,No sé,formulario
+21,e1_01_50000,"E1.1 ""¿Compraría esa taza aquí hoy a $50.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),No,formulario
+22,e1_02_35000,"E1.2 ""¿Compraría esa taza aquí hoy a $35.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),No,formulario
+23,e1_03_25000,"E1.3 ""¿Compraría esa taza aquí hoy a $25.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),No,formulario
+24,e1_04_18000,"E1.4 ""¿Compraría esa taza aquí hoy a $18.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),No,formulario
+25,e1_05_16000,"E1.5 ""¿Compraría esa taza aquí hoy a $16.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),No,formulario
+26,e1_06_14000,"E1.6 ""¿Compraría esa taza aquí hoy a $14.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),No,formulario
+27,e1_07_12000,"E1.7 ""¿Compraría esa taza aquí hoy a $12.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),Sí,formulario
+28,e1_08_10000,"E1.8 ""¿Compraría esa taza aquí hoy a $10.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),,formulario
+29,e1_09_8000,"E1.9 ""¿Compraría esa taza aquí hoy a $8.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),,formulario
+30,e1_10_6000,"E1.10 ""¿Compraría esa taza aquí hoy a $6.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),,formulario
+31,e1_11_4000,"E1.11 ""¿Compraría esa taza aquí hoy a $4.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),,formulario
+32,e1_12_2500,"E1.12 ""¿Compraría esa taza aquí hoy a $2.500?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),,formulario
+33,e1_13_1500,"E1.13 ""¿Compraría esa taza aquí hoy a $1.500?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),,formulario
+34,e3_razon,E3. Razón de rechazar los trece precios,categórica,5 razones; Otra; No responde; vacío si aceptó algún precio,,formulario
+35,b2_precio_pagado,B2. Precio pagado por la bebida (opcional),pesos,0 a 1.000.000; vacío = no recuerda o no responde,9500,formulario
+36,b3_gasto_total,B3. Gasto total de la visita (opcional),pesos,0 a 1.000.000; vacío,15000,formulario
+37,b4_incluye_otros,B4. ¿El total incluye a otras personas? (opcional),categórica,Sí; No; vacío,No,formulario
+38,b5_precio_tinto,B5. Precio habitual del tinto (opcional),pesos,"0 a 1.000.000; vacío = no compra, no sabe o no responde",2000,formulario
+39,f1_atributo1,F1. Lo que más le importa,categórica,7 atributos; Prefiere no responder,Sabor,formulario
+40,f2_atributo2,F2. En segundo lugar,categórica,7 atributos; Prefiere no responder,Origen del café (finca o región),formulario
+41,g1_edad,G1. Rango de edad,ordinal,18 a 24 … 55 o más; Prefiere no responder,25 a 34,formulario
+42,g2_educacion,G2. Nivel educativo,ordinal,Bachillerato o menos … Posgrado; Prefiere no responder,Pregrado completo,formulario
+43,g3_ocupacion,G3. Ocupación principal,categórica,6 ocupaciones; Prefiere no responder,Empleado,formulario
+44,g4_ingreso,G4. Ingreso mensual del hogar,ordinal,"6 rangos (1, 2, 4, 6 y 10 SMMLV); No sabe; Prefiere no responder","De $3,5 a $7 millones",formulario
+45,g5_estrato,G5. Estrato de la vivienda,ordinal,1 a 6; No vive en Bogotá; No sabe; Prefiere no responder,4,formulario
+46,z6_atencion,Z6. ¿Respondió con atención?,categórica,Sí; Más o menos; No,Sí,formulario
+47,z7_escucho,Z7. ¿Alguien más escuchó los precios o intervino?,categórica,Sí; No,No,formulario
+48,z8_interrupcion,Z8. ¿La encuesta se interrumpió?,categórica,"No; Sí, se completó; Sí, quedó incompleta",No,formulario
+49,z9_observaciones,Z9. Observaciones (opcional),texto,Sin nombres ni descripciones de la persona,,formulario
+50,dap_L,(derivada),pesos,Precio más alto aceptado; vacío si rechazó los trece,12000,derivada
+51,dap_U,(derivada),pesos,Precio rechazado inmediatamente superior; vacío si aceptó $50.000,14000,derivada
+52,dap_tipo,(derivada),categórica,intervalo; censura_derecha (aceptó $50.000); censura_izquierda (rechazó todo); protesta; faltante,intervalo,derivada
+53,prima_min,(derivada),pesos,dap_L − b5_precio_tinto; vacío si falta alguno,10000,derivada
+54,conocimiento,(derivada),entero 0–4,"Aciertos en D2 a D5; ""No sé"" = 0",3,derivada
