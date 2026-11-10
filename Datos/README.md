@@ -8,15 +8,24 @@
 
 Esta carpeta tiene la **estructura de la base de datos** de la encuesta, lista antes del trabajo de campo. Muestra cómo queda una observación una vez se exportan las respuestas de Google Forms, qué significa cada columna y cómo se enlaza cada encuesta con la cafetería donde se hizo.
 
-> ⚠️ **La única fila de `base_estructura_fila_ficticia.csv` es inventada.** No es una respuesta real ni un piloto: sirve solo para mostrar la estructura. Lleva `registro_ficticio = Sí` y se borra antes del análisis. Las respuestas reales no se suben a este repositorio; solo se publican resultados agregados (Ley 1581 de 2012).
+> ⚠️ **La única fila de `base_estructura_fila_ficticia.csv` es inventada.** No es una respuesta real ni un piloto: sirve solo para mostrar la estructura.
+>
+> 🔒 **Datos reales (Entrega 4).** Las respuestas del trabajo de campo se suben porque la entrega lo exige. La encuesta es anónima: no tiene nombres, teléfonos, correos ni documentos, y la edad, el ingreso y el estrato van en rangos (Ley 1581 de 2012).
 
 ## 📄 Archivos
 
 | Archivo | Contenido |
 |---|---|
+| `crudos/base_cruda_formulario.csv` | **Datos raw**: exportación de Google Forms tal como salió (89 filas × 43 columnas). No se edita nunca |
+| `crudos/base_cruda_con_coordenadas.csv` | **Datos raw unidos a las coordenadas geográficas** de cada cafetería (dirección, latitud, longitud, zona, rol). La genera `Scripts/01_limpieza.R` |
+| `limpios/base_limpia.csv` | Las 89 filas con nombres cortos, `id_encuesta`, montos corregidos, variables derivadas, banderas de calidad, `valida` y `motivo_exclusion` |
+| `limpios/base_analisis.csv` | Solo las 81 observaciones válidas (`valida = 1`) |
+| `limpios/flujo_casos.csv` | De 89 registros a 81 válidas, con cada motivo de exclusión |
+| `limpios/resumen_por_tienda.csv` | Encuestas registradas y válidas por cafetería, con coordenadas |
+| `limpios/registro_limpieza.txt` | Registro de cada corrección que hizo el script |
 | `base_estructura_fila_ficticia.csv` | La base: una fila por encuesta y una columna por variable (54), en el orden del cuestionario, con una observación ficticia |
 | `diccionario_variables.csv` | Cada variable con el título de su pregunta en el formulario, el tipo, los valores permitidos, el valor de la fila ficticia y su origen (formulario o derivada) |
-| `hoja_tiendas.csv` | Las 27 cafeterías de la ruta con su código (T01 a T27), dirección, coordenadas y enlace de Google Maps, día, zona, rol (principal o reserva), pareja y turno, y las columnas de verificación del criterio que se llenan en campo. Coincide con `Documentacion/Plan de ruta.pdf` |
+| `hoja_tiendas.csv` | Las 27 cafeterías de la ruta (T01 a T27) más Diosa (T28), agregada en campo, con su código, dirección, coordenadas y enlace de Google Maps, día, zona, rol (principal o reserva), pareja y turno, y las columnas de verificación del criterio que se llenan en campo. Coincide con `Documentacion/Plan de ruta.pdf` |
 
 ## 🔑 Identificadores
 
@@ -39,6 +48,25 @@ Esta carpeta tiene la **estructura de la base de datos** de la encuesta, lista a
 | `dap_L` · `dap_U` · `dap_tipo` | 12000 · 14000 · intervalo | La DAP está entre $12.000 y $14.000 |
 | `prima_min` | 10000 | `dap_L` menos el precio del tinto |
 
-Las variables derivadas (`dap_L`, `dap_U`, `dap_tipo`, `prima_min` y `conocimiento`) se calculan con un script en la limpieza, nunca a mano. Los montos que la persona no recuerda o no quiere decir quedan **vacíos**: no se escribe 0 ni un valor estimado.
+Las variables derivadas (`dap_L`, `dap_U`, `dap_tipo`, `prima_min` y `conocimiento`) se calculan con [`Scripts/01_limpieza.R`](../Scripts/01_limpieza.R), nunca a mano. Los montos que la persona no recuerda o no quiere decir quedan **vacíos**: no se escribe 0 ni un valor estimado.
 
 El detalle de la escalera, la meta de 160 encuestas y el plan de análisis está en [`Documentacion/Protocolo de trabajo de campo.pdf`](../Documentacion/Protocolo%20de%20trabajo%20de%20campo.pdf).
+
+## 🧹 Reglas de limpieza (`Scripts/01_limpieza.R`)
+
+| Regla | Qué se hace |
+|---|---|
+| Elegibilidad | Se excluye quien no compró bebida (A3 = No, 2) o ya había respondido (A4 = Sí, 3) |
+| Escalera | Se detiene en el primer "Sí": `dap_L` = precio aceptado, `dap_U` = precio rechazado inmediatamente superior. "No está seguro" = "No" (con `flag_no_seguro`). "No responde" o huecos = `faltante` (2, excluidas) |
+| Escalera de 10 precios | El formulario aplicado llegó hasta $6.000 (no tuvo $4.000, $2.500 ni $1.500). Quien rechaza todo queda como `censura_izquierda` con `dap_U` = 6.000 (3 casos) |
+| Protesta | Rechazo total con motivo de protesta en E3 → `protesta` (1, excluida) |
+| Montos B2, B3, B5 | 0 → vacío (el protocolo prohíbe escribir 0). Valores < 100 se leen en miles (12 → 12.000; 2,5 → 2.500). Se marcan con `flag_monto_corregido` |
+| Atípicos | Se conservan con bandera: tinto > $6.000 (`flag_tinto_atipico`, 6), gasto total < $1.000 (`flag_b3_atipico`, 1), gasto total < precio pagado (`flag_b3_menor_b2`, 1) |
+| Ingreso | "Hasta $1,75 millones" y "Menos de $1,75 millones" se unen |
+| `id_encuesta` | Tienda-iniciales-consecutivo; el consecutivo se cuenta por encuestador dentro de cada tienda para que no se repita entre días |
+| Conocimiento | Aciertos de D2 a D5 (0 a 4); "No sé" = no acierto |
+| Grupos | `grupo_estrato`, `grupo_ingreso`, `grupo_educacion`, `grupo_conocimiento` y `grupo_frecuencia`, como en el plan de análisis |
+
+**Resultado:** 89 registros → **81 observaciones finales válidas** (74 intervalos cerrados, 4 con censura a la derecha, 3 con censura a la izquierda).
+
+**Coordenadas.** Las de T02 (Café de los Tres) y T03 (Cráneo Sacral) estaban erradas (caían a 5 km y 1,7 km de su dirección) y se corrigieron; la de Diosa (T28) se agregó. Las tres son aproximadas por la cuadrícula de calles y conviene confirmarlas en Google Maps (ver columna `observaciones`).

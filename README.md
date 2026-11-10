@@ -4,7 +4,7 @@
 
 ![Universidad del Rosario](https://img.shields.io/badge/Universidad%20del%20Rosario-Haciendo%20Econom%C3%ADa%202026--2-8B1E2D)
 ![Eje](https://img.shields.io/badge/Eje-Demanda%20y%20comportamiento%20del%20consumidor-1F4E5F)
-![Estado](https://img.shields.io/badge/Estado-En%20desarrollo-5A6B70)
+![Estado](https://img.shields.io/badge/Estado-Datos%20recolectados-5A6B70)
 
 **Profesor:** Paul Rodríguez L.
 **Estudiantes:** Santiago Gómez, Camilo Ospina, Emily Rodríguez y David Pascagaza
@@ -38,17 +38,33 @@ La prensa económica reporta que en Colombia el sabor desplazó al precio como p
 | **Marco teórico** | Bienes como canasta de características (Lancaster, 1966), DAP y curva de demanda, bienes de experiencia y credibilidad (Nelson, 1970; Darby y Karni, 1973), calidad percibida (Zeithaml, 1988) y adicción racional (Becker y Murphy, 1988) |
 | **Revisión de literatura** | Protocolo PRISMA 2020: 86 registros identificados, 32 fuentes incluidas |
 | **Instrumento** | Encuesta presencial en Google Forms; DAP con una escalera de 13 precios, de $50.000 a $1.500 |
-| **Trabajo de campo** | 27 cafeterías de Chapinero (16 principales y 11 de reserva), meta de 160 encuestas |
+| **Trabajo de campo** | 3 al 8 de noviembre de 2026 · 21 cafeterías visitadas (16 principales, 4 reservas y 1 adicional) · 89 encuestas registradas, **81 válidas** (meta: 160) |
 
 ## 📂 Estructura del repositorio
 
 ```
 Proyecto-final-doing-economics/
-├── Documentacion/   # Entregas, informe final, plan de ruta y protocolo de trabajo de campo
+├── Documentacion/   # Entregas, informe final, plan de ruta, protocolo e informe de trabajo de campo
+│   └── evidencia_campo/   # Fotos del trabajo de campo
 ├── Encuesta/        # Enlace y estructura de la encuesta en Google Forms
-├── Datos/           # Estructura de la base, diccionario de variables y hoja de tiendas
+├── Datos/
+│   ├── crudos/      # Datos raw del formulario y datos raw + coordenadas geográficas
+│   ├── limpios/     # Base limpia, base de análisis, flujo de casos y registro de limpieza
+│   ├── hoja_tiendas.csv, diccionario_variables.csv, base_estructura_fila_ficticia.csv
+├── Scripts/
+│   └── 01_limpieza.R   # Limpieza y variables derivadas (R base, sin paquetes)
+├── Resultados/      # Mapa de cafeterías visitadas
 └── README.md
 ```
+
+## ▶️ Cómo reproducir la limpieza
+
+```r
+# Desde la raíz del repositorio (R >= 4.0, sin paquetes adicionales)
+source("Scripts/01_limpieza.R")
+```
+
+o en la terminal: `Rscript Scripts/01_limpieza.R`. El script lee `Datos/crudos/base_cruda_formulario.csv` y `Datos/hoja_tiendas.csv`, y escribe `Datos/crudos/base_cruda_con_coordenadas.csv` y todo `Datos/limpios/`. Tiene chequeos `stopifnot()` en cada paso.
 
 ## 📄 Informe en línea
 

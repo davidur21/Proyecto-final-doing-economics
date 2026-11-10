@@ -12,6 +12,8 @@
 |---|---|
 | `Entrega 1 y 2a doing economics.docx` | Pregunta de investigación, motivación y primera revisión de literatura |
 | `Entrega 2b - literatura y marco teórico.docx` | Revisión de literatura y marco teórico |
+| **`Entrega 4 - Informe de trabajo de campo.docx` / `.pdf`** | **Informe de recolección de datos: cumplimiento del protocolo, evidencia fotográfica, número de observaciones finales (81) y hallazgos** |
+| `evidencia_campo/` | Fotos del trabajo de campo (sin encuestados; terceros sin autorización escrita difuminados) |
 | **`Informe Final.docx`** | **Documento final del proyecto** |
 | **`Plan de ruta.pdf`** | **Cafeterías de Chapinero que vamos a visitar y recorrido del trabajo de campo** |
 | **`Protocolo de trabajo de campo.pdf`** | **Protocolo de la encuesta: diseño, muestra, cuestionario, consentimiento, logística y plan de análisis** |
