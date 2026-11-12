@@ -88,8 +88,15 @@ La tabla completa, tienda por tienda, está en `Datos/limpios/cobertura_por_tien
 | Cafeterías con registros | — | 21 |
 | Cafeterías con encuestas válidas | — | **20** (4,05 válidas por cafetería) |
 | Encuestas | 160 (10 por principal) | 89 registradas, **81 válidas** (50,6 %) |
-| Fechas | 2 al 6 nov, dos jornadas | Marcas temporales del 3, 4, 8 y 9 nov |
+| Fechas | 2 al 6 nov, dos jornadas | Campo el 3, 4 y 8 nov; marcas temporales hasta el 9 nov (registros posteriores y 3 encuestas por QR) |
 
-**Ajustes frente al informe de la Entrega 4.** Ese informe dice "21 cafeterías" y "3,9 encuestas válidas por cafetería" (81 ÷ 21). Las 81 válidas están en **20** cafeterías: T24 se visitó, pero sus dos registros se excluyeron. Por eso el promedio es 4,05. Además, 30 encuestas tienen marca temporal del 9 de noviembre; el informe las explica como registros hechos en Google Forms después de la visita.
+**Ajustes frente al informe de la Entrega 4.** Ese informe dice "21 cafeterías" y "3,9 encuestas válidas por cafetería" (81 ÷ 21). Las 81 válidas están en **20** cafeterías: T24 se visitó, pero sus dos registros se excluyeron. Por eso el promedio es 4,05.
+
+**Encuestas con fecha del 9 de noviembre (30).** Ese día no hubo salida de campo.
+
+- **27** son visitas del 8 de noviembre que se registraron en Google Forms al día siguiente.
+- **3**, de Diosa (T28), las diligenciaron clientes con el código QR que el equipo dejó en la cafetería, con apoyo del mesero y sin un integrante presente. Es una desviación del protocolo, que preveía encuestas aplicadas por el equipo. En Z1 aparece quien registró la encuesta, no quien la aplicó. Se conservan en la muestra con la variable `modalidad`. Si se excluyen (n = 78), a $12.000 compraría el 73 % (72 % con las 81) y la mitad sigue dejando de comprar entre $14.000 y $16.000.
+
+La columna `autodiligenciadas_qr` de `cobertura_por_tienda.csv` registra estos 3 casos.
 
 **Sobre la meta de 160.** La meta suponía 10 encuestas por cafetería en una jornada. La tasa real fue de 0 a 10 por tienda (mediana 4). El informe de campo menciona, entre otras dificultades, la de abordar a clientes que estaban comiendo. El análisis trabaja con 81 válidas y reporta siempre el n de cada grupo.

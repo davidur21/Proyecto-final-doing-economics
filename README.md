@@ -38,7 +38,7 @@ La prensa económica reporta que en Colombia el sabor desplazó al precio como p
 | **Marco teórico** | Bienes como canasta de características (Lancaster, 1966), DAP y curva de demanda, bienes de experiencia y credibilidad (Nelson, 1970; Darby y Karni, 1973), calidad percibida (Zeithaml, 1988) y adicción racional (Becker y Murphy, 1988) |
 | **Revisión de literatura** | Protocolo PRISMA 2020: 86 registros identificados, 32 fuentes incluidas |
 | **Instrumento** | Encuesta presencial en Google Forms; DAP con una escalera de precios desde $50.000 (13 en el protocolo; el formulario aplicado llegó hasta $6.000, con 10). Ver el [registro de versiones](Documentacion/Registro%20de%20versiones%20del%20instrumento.md) |
-| **Trabajo de campo** | 3 al 8 de noviembre de 2026 (registros en Forms hasta el 9) · 21 cafeterías con registros (16 principales, 4 reservas y 1 adicional), 20 con encuestas válidas · 89 encuestas registradas, **81 válidas** (meta: 160) |
+| **Trabajo de campo** | 3 al 8 de noviembre de 2026 (el 9 hubo registros posteriores en Forms y 3 encuestas por QR en Diosa) · 21 cafeterías con registros (16 principales, 4 reservas y 1 adicional), 20 con encuestas válidas · 89 encuestas registradas, **81 válidas** (meta: 160) |
 
 ## 📂 Estructura del repositorio
 

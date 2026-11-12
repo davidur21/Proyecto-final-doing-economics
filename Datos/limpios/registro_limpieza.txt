@@ -1,5 +1,6 @@
-Registro de limpieza - 2026-11-11 22:06
+Registro de limpieza - 2026-11-11 22:21
 Filas en la exportación cruda: 89
+Modalidad: 3 encuestas autodiligenciadas con QR en Diosa (T28) el 2026-11-09; el resto, con encuestador
 b2_precio_pagado: 1 ceros -> vacío; 6 valores < 100 multiplicados por 1.000
 b3_gasto_total: 2 ceros -> vacío; 5 valores < 100 multiplicados por 1.000
 b5_precio_tinto: 1 ceros -> vacío; 5 valores < 100 multiplicados por 1.000
@@ -9,4 +10,4 @@ Flujo de casos: Registros en el formulario = 89 | No compró bebida (no elegible
 Cobertura: 21 cafeterías con registros, 20 con encuestas válidas; principales cubiertas = 16 de 16
 Tipos de DAP (todas las filas): censura_derecha = 4; censura_izquierda = 3; faltante = 3; intervalo = 74; no_aplicada = 4; protesta = 1
 Fechas con encuestas: 2026-11-03 = 2; 2026-11-04 = 5; 2026-11-08 = 52; 2026-11-09 = 30
-Base limpia: 89 filas x 74 columnas; válidas = 81
+Base limpia: 89 filas x 75 columnas; válidas = 81

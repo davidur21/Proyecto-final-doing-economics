@@ -58,3 +58,4 @@
 57,flag_d3_version_anterior,(derivada),0/1,"1 = respondió en D3 la opción de la versión anterior (""Un método de preparación por filtrado"")",0,derivada
 58,prima_min_veces_tinto,(derivada),número,"prima_min ÷ b5_precio_tinto: cuántos tintos más vale la taza (corregida en la Entrega 5; antes era dap_L ÷ tinto)",5,derivada
 59,dap_veces_tinto,(derivada),número,"dap_L ÷ b5_precio_tinto: cuántos tintos vale la taza de filtrado",6,derivada
+60,modalidad,(derivada),categórica,"Encuestador del equipo; Autodiligenciada (QR con apoyo del mesero): las 3 encuestas de Diosa (T28) del 9 de noviembre, que hicieron clientes con el QR sin un integrante presente",Encuestador del equipo,derivada

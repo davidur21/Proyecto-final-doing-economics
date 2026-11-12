@@ -100,6 +100,17 @@ d$fecha <- as.Date(d$marca_temporal, tz = "America/Bogota")
 
 d$z2_tienda   <- codigo_tienda
 d$tienda_nombre <- trimws(sub("^T[0-9]+\\s*·\\s*", "", d$z2_tienda_texto))
+
+# Modalidad de aplicación. El 9 de noviembre no hubo salida de campo: las encuestas
+# con esa fecha son visitas del 8 registradas en Forms al día siguiente, salvo las 3
+# de Diosa (T28), que diligenciaron clientes con el código QR que el equipo dejó en
+# la cafetería, con apoyo del mesero y sin un integrante presente. Z1 tiene el nombre
+# de quien registró la encuesta, no de quien la aplicó. Se conservan con esta marca.
+d$modalidad <- ifelse(d$z2_tienda == "T28" & format(d$fecha) == "2026-11-09",
+                      "Autodiligenciada (QR con apoyo del mesero)", "Encuestador del equipo")
+stopifnot(sum(d$modalidad != "Encuestador del equipo") == 3)
+anotar("Modalidad: ", sum(d$modalidad != "Encuestador del equipo"),
+       " encuestas autodiligenciadas con QR en Diosa (T28) el 2026-11-09; el resto, con encuestador")
 d$latitud     <- geo$latitud
 d$longitud    <- geo$longitud
 d$tienda_zona <- geo$tienda_zona
@@ -287,6 +298,8 @@ cobertura$registradas <- as.integer(table(factor(d$z2_tienda, levels = cobertura
 cobertura$validas <- as.integer(tapply(d$valida, factor(d$z2_tienda, levels = cobertura$codigo), sum))
 cobertura$validas[is.na(cobertura$validas)] <- 0L
 cobertura$fechas_registro_forms <- unname(fechas_tienda[cobertura$codigo])
+cobertura$autodiligenciadas_qr <- as.integer(table(factor(d$z2_tienda[d$modalidad != "Encuestador del equipo"],
+                                                             levels = cobertura$codigo)))
 cobertura$estado <- ifelse(cobertura$validas > 0, "Con encuestas válidas",
                     ifelse(cobertura$registradas > 0, "Visitada, sin encuestas válidas", "No visitada"))
 stopifnot(sum(cobertura$registradas) == nrow(d), sum(cobertura$validas) == sum(d$valida),
@@ -300,6 +313,7 @@ anotar("Cobertura: ", sum(cobertura$registradas > 0), " cafeterías con registro
 # --- 9. Exportar ----------------------------------------------------------------
 orden <- c("id_encuesta", "registro_ficticio", "marca_temporal", "fecha", "z1_encuestador",
            "z2_tienda", "tienda_nombre", "tienda_zona", "tienda_rol", "latitud", "longitud", "z3_franja",
+           "modalidad",
            "a1_consiente", "a2_mayor18", "a3_compro", "a4_ya_respondio", "b1_bebida",
            "c1_frec_especialidad", "c2_frec_tienda", "c3_lugar_habitual", "c4_motivo",
            "d1_autoeval", "d2_especies", "d3_tostion", "d4_proceso", "d5_puntaje85", E, "e3_razon",
