@@ -12,7 +12,7 @@
 |---|---|
 | `Entrega 1 y 2a doing economics.docx` | Pregunta de investigación, motivación y primera revisión de literatura |
 | `Entrega 2b - literatura y marco teórico.docx` | Revisión de literatura y marco teórico |
-| **`Entrega 4 - Informe de trabajo de campo.docx` / `.pdf`** | **Informe de recolección de datos: cumplimiento del protocolo, evidencia fotográfica, número de observaciones finales (81) y hallazgos** |
+| **`Entrega 4 - Informe de trabajo de campo.docx` / `.pdf`** | **Informe de recolección de datos: cumplimiento del protocolo, evidencia fotográfica, número de observaciones finales (81) y hallazgos. Incluye una adenda del 11 de noviembre con las correcciones tras la retroalimentación** |
 | `evidencia_campo/` | Fotos del trabajo de campo (sin encuestados; las personas que aparecen autorizaron la foto) |
 | **`Entrega 5 - Visualizaciones.docx` / `.pdf`** | **Qué muestra cada gráfica, por qué elegimos ese tipo de gráfica y cómo respondimos a la retroalimentación de la Entrega 4** |
 | **`Registro de versiones del instrumento.md`** | **Versiones del protocolo y del formulario con sus fechas (escalera, preguntas de conocimiento, pregunta abierta), verificación en la base de si se mezclaron versiones y cobertura planeada frente a la ejecutada** |

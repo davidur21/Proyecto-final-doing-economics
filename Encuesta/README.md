@@ -21,14 +21,21 @@ La diligencia el encuestador en campo · 5 a 6 minutos · anónima</p>
 | **A. Consentimiento y elegibilidad** | A1 acepta participar · A2 tiene 18 años o más · A3 compró una bebida hoy · A4 ya respondió antes |
 | **B1. Compra actual** | Bebida comprada hoy |
 | **C. Hábitos** | C1 frecuencia en cafeterías de especialidad · C2 frecuencia en esta tienda · C3 lugar habitual · C4 motivo de la visita |
-| **D. Reto cafetero** | D1 autoevaluación (1 a 5) · D2 especies de café · D3 tostión clara frente a oscura · D4 "lavado" o "natural" · D5 café de 85 puntos |
-| **E. Escalera de DAP** | E1.1 a E1.13: $50.000 · $35.000 · $25.000 · $18.000 · $16.000 · $14.000 · $12.000 · $10.000 · $8.000 · $6.000 · $4.000 · $2.500 · $1.500. Se detiene en el primer "sí". E3: motivo si rechaza todos |
+| **D. Reto cafetero** | D1 autoevaluación (1 a 5) · D2 especies de café · D3 tostión clara frente a oscura · D4 "lavado" o "natural" · D5 café de 85 puntos ⚠️ |
+| **E. Escalera de DAP** | Protocolo: E1.1 a E1.13 ($50.000 · $35.000 · $25.000 · $18.000 · $16.000 · $14.000 · $12.000 · $10.000 · $8.000 · $6.000 · $4.000 · $2.500 · $1.500). **Formulario aplicado: E1.1 a E1.10, de $50.000 a $6.000** ⚠️. Se detiene en el primer "sí". E3: motivo si rechaza todos |
 | **B2–B5. Precios y tinto** | Precio pagado · gasto total · si incluye a otros · precio habitual del tinto |
 | **F. Atributos** | Lo que más importa y lo segundo |
 | **G. Sobre usted** | Edad · educación · ocupación · ingreso del hogar · estrato |
 | **Cierre** | Atención · si alguien escuchó los precios · interrupción |
 
 **Por qué este orden.** El reto cafetero va **antes** de la escalera, porque el escenario de la DAP describe el método de preparación y el origen del café; si fuera después, le enseñaría las respuestas al encuestado. Por la misma razón, el reto no pregunta por V60 ni por la identificación de región o finca. La escalera empieza en un precio improbable ($50.000) para que el primer número no funcione como ancla.
+
+> ⚠️ **Diferencias entre el protocolo y el formulario aplicado en campo** (3 al 9 de noviembre de 2026)
+>
+> - La escalera aplicada tuvo 10 precios, de $50.000 a $6.000; faltaron $4.000, $2.500 y $1.500. Las 85 escaleras aplicadas usaron esa misma versión.
+> - En D2 y D3 el formulario conservó la respuesta correcta de las preguntas anteriores (café "de origen" y V60), y la eligieron 12 y 13 personas. Por eso el conocimiento se mide con D4 y D5, iguales para todos. Hoy el formulario ya no muestra esas opciones.
+>
+> El detalle, con fechas, está en el [registro de versiones del instrumento](../Documentacion/Registro%20de%20versiones%20del%20instrumento.md).
 
 **Se puede omitir cualquier pregunta.** Los montos (B2 a B5) son opcionales y se dejan en blanco si la persona no recuerda o no quiere decirlos, nunca en 0. Las preguntas de opción tienen "Prefiere no responder" o "No sé".
 
