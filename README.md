@@ -4,7 +4,7 @@
 
 ![Universidad del Rosario](https://img.shields.io/badge/Universidad%20del%20Rosario-Haciendo%20Econom%C3%ADa%202026--2-8B1E2D)
 ![Eje](https://img.shields.io/badge/Eje-Demanda%20y%20comportamiento%20del%20consumidor-1F4E5F)
-![Estado](https://img.shields.io/badge/Estado-Datos%20recolectados-5A6B70)
+![Estado](https://img.shields.io/badge/Estado-Visualizaciones-5A6B70)
 
 **Profesor:** Paul Rodríguez L.
 **Estudiantes:** Santiago Gómez, Camilo Ospina, Emily Rodríguez y David Pascagaza
@@ -37,8 +37,8 @@ La prensa económica reporta que en Colombia el sabor desplazó al precio como p
 | **Unidad de observación** | Cliente encuestado en una visita |
 | **Marco teórico** | Bienes como canasta de características (Lancaster, 1966), DAP y curva de demanda, bienes de experiencia y credibilidad (Nelson, 1970; Darby y Karni, 1973), calidad percibida (Zeithaml, 1988) y adicción racional (Becker y Murphy, 1988) |
 | **Revisión de literatura** | Protocolo PRISMA 2020: 86 registros identificados, 32 fuentes incluidas |
-| **Instrumento** | Encuesta presencial en Google Forms; DAP con una escalera de 13 precios, de $50.000 a $1.500 |
-| **Trabajo de campo** | 3 al 8 de noviembre de 2026 · 21 cafeterías visitadas (16 principales, 4 reservas y 1 adicional) · 89 encuestas registradas, **81 válidas** (meta: 160) |
+| **Instrumento** | Encuesta presencial en Google Forms; DAP con una escalera de precios desde $50.000 (13 en el protocolo; el formulario aplicado llegó hasta $6.000, con 10). Ver el [registro de versiones](Documentacion/Registro%20de%20versiones%20del%20instrumento.md) |
+| **Trabajo de campo** | 3 al 8 de noviembre de 2026 (registros en Forms hasta el 9) · 21 cafeterías con registros (16 principales, 4 reservas y 1 adicional), 20 con encuestas válidas · 89 encuestas registradas, **81 válidas** (meta: 160) |
 
 ## 📂 Estructura del repositorio
 
@@ -52,12 +52,27 @@ Proyecto-final-doing-economics/
 │   ├── limpios/     # Base limpia, base de análisis, flujo de casos y registro de limpieza
 │   ├── hoja_tiendas.csv, diccionario_variables.csv, base_estructura_fila_ficticia.csv
 ├── Scripts/
-│   └── 01_limpieza.R   # Limpieza y variables derivadas (R base, sin paquetes)
-├── Resultados/      # Mapa de cafeterías visitadas
+│   ├── 01_limpieza.R          # Limpieza y variables derivadas (R base, sin paquetes)
+│   └── 02_visualizaciones.py  # Figuras del proyecto y tablas de apoyo (Python)
+├── Resultados/
+│   ├── figuras/     # 6 figuras principales (PNG y PDF) y anexo técnico
+│   ├── tablas/      # Tablas de apoyo de cada figura
+│   └── mapa_cafeterias.png
 └── README.md
 ```
 
-## ▶️ Cómo reproducir la limpieza
+## 📊 Lo que encontramos
+
+| | |
+|---|---|
+| ![](Resultados/figuras/fig2_hasta_cuanto_pagarian.png) | **La mitad de los clientes pagaría hasta $14.000 por un café filtrado.** Entre $14.000 y $16.000 se va la mitad. |
+| ![](Resultados/figuras/fig3_cuantos_tintos_vale.png) | **Para más de la mitad, un filtrado vale 4 tintos o más.** |
+| ![](Resultados/figuras/fig5_quien_paga_mas.png) | **El estrato y el ingreso marcan la diferencia; saber de café, no tanto.** A $12.000 compraría el 90 % del estrato 5 o más y el 57 % del estrato 3 o menos. |
+| ![](Resultados/figuras/fig6_que_buscan.png) | **Quienes pagarían más buscan origen y sabor; los demás, ambiente y atención.** |
+
+Todas las figuras y por qué elegimos cada una: [`Resultados/`](Resultados) y [`Documentacion/Entrega 5 - Visualizaciones.pdf`](Documentacion/Entrega%205%20-%20Visualizaciones.pdf).
+
+## ▶️ Cómo reproducir todo
 
 ```r
 # Desde la raíz del repositorio (R >= 4.0, sin paquetes adicionales)
@@ -65,6 +80,12 @@ source("Scripts/01_limpieza.R")
 ```
 
 o en la terminal: `Rscript Scripts/01_limpieza.R`. El script lee `Datos/crudos/base_cruda_formulario.csv` y `Datos/hoja_tiendas.csv`, y escribe `Datos/crudos/base_cruda_con_coordenadas.csv` y todo `Datos/limpios/`. Tiene chequeos `stopifnot()` en cada paso.
+
+Después, las figuras (Python ≥ 3.9 con pandas, numpy, matplotlib y scipy):
+
+```bash
+python Scripts/02_visualizaciones.py
+```
 
 ## 📄 Informe en línea
 

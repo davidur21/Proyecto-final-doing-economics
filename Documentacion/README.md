@@ -14,6 +14,8 @@
 | `Entrega 2b - literatura y marco teórico.docx` | Revisión de literatura y marco teórico |
 | **`Entrega 4 - Informe de trabajo de campo.docx` / `.pdf`** | **Informe de recolección de datos: cumplimiento del protocolo, evidencia fotográfica, número de observaciones finales (81) y hallazgos** |
 | `evidencia_campo/` | Fotos del trabajo de campo (sin encuestados; las personas que aparecen autorizaron la foto) |
+| **`Entrega 5 - Visualizaciones.docx` / `.pdf`** | **Qué muestra cada gráfica, por qué elegimos ese tipo de gráfica y cómo respondimos a la retroalimentación de la Entrega 4** |
+| **`Registro de versiones del instrumento.md`** | **Versiones del protocolo y del formulario con sus fechas (escalera, preguntas de conocimiento, pregunta abierta), verificación en la base de si se mezclaron versiones y cobertura planeada frente a la ejecutada** |
 | **`Informe Final.docx`** | **Documento final del proyecto** |
 | **`Plan de ruta.pdf`** | **Cafeterías de Chapinero que vamos a visitar y recorrido del trabajo de campo** |
 | **`Protocolo de trabajo de campo.pdf`** | **Protocolo de la encuesta: diseño, muestra, cuestionario, consentimiento, logística y plan de análisis** |
@@ -27,7 +29,7 @@
 El detalle completo está en [`Plan de ruta.pdf`](./Plan%20de%20ruta.pdf): las cafeterías que vamos a visitar y el orden del recorrido.
 
 - **Zona:** Chapinero, Bogotá.
-- **Instrumento:** cuestionario en Google Forms (de 5 a 6 minutos). La disposición a pagar se pregunta con una escalera de 13 precios que empieza en un valor improbable, $50.000, y baja hasta $1.500, el precio de un tinto.
+- **Instrumento:** cuestionario en Google Forms (de 5 a 6 minutos). El protocolo plantea una escalera de 13 precios que empieza en un valor improbable, $50.000, y baja hasta $1.500, el precio de un tinto. El formulario aplicado en campo llegó hasta $6.000 (10 precios); ver el [registro de versiones](./Registro%20de%20versiones%20del%20instrumento.md).
 - **Cobertura:** 27 cafeterías candidatas (T01 a T27): 16 en la muestra principal y 11 de reserva. Meta: 160 encuestas, 10 por tienda.
 - **Población:** clientes de 18 años o más que compraron una bebida en la cafetería.
 - **Criterio para incluir una cafetería:** ofrece al menos un método de filtrado manual, informa el origen del café y prepara en barra con barista. Se verifica en cada local, al llegar, y queda registrado en [`Datos/hoja_tiendas.csv`](../Datos/hoja_tiendas.csv).
