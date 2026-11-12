@@ -1,10 +1,12 @@
-Registro de limpieza - 2026-11-09 20:48
+Registro de limpieza - 2026-11-11 22:06
 Filas en la exportación cruda: 89
 b2_precio_pagado: 1 ceros -> vacío; 6 valores < 100 multiplicados por 1.000
 b3_gasto_total: 2 ceros -> vacío; 5 valores < 100 multiplicados por 1.000
 b5_precio_tinto: 1 ceros -> vacío; 5 valores < 100 multiplicados por 1.000
 Montos atípicos marcados (no se borran): B3 < $1.000 = 1; tinto > $6.000 = 6; B3 < B2 = 1
+Reto cafetero: respuestas de la versión anterior en D2 = 12; en D3 = 13
 Flujo de casos: Registros en el formulario = 89 | No compró bebida (no elegible) = 2 | Ya había respondido (duplicado) = 3 | Sin escalera de DAP = 0 | Escalera incompleta = 2 | Respuesta de protesta (E3) = 1 | Observaciones finales válidas = 81
+Cobertura: 21 cafeterías con registros, 20 con encuestas válidas; principales cubiertas = 16 de 16
 Tipos de DAP (todas las filas): censura_derecha = 4; censura_izquierda = 3; faltante = 3; intervalo = 74; no_aplicada = 4; protesta = 1
 Fechas con encuestas: 2026-11-03 = 2; 2026-11-04 = 5; 2026-11-08 = 52; 2026-11-09 = 30
-Base limpia: 89 filas x 70 columnas; válidas = 81
+Base limpia: 89 filas x 74 columnas; válidas = 81

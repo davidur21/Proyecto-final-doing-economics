@@ -15,8 +15,8 @@
 14,c3_lugar_habitual,C3. Dónde toma café la mayoría de los días,categórica,6 lugares; Prefiere no responder,En casa,formulario
 15,c4_motivo,C4. Motivo de la visita (opcional),categórica,5 motivos; vacío,A trabajar o estudiar,formulario
 16,d1_autoeval,"D1. ""De 1 a 5, ¿cuánto sabe de café?"" (opcional)",entero,1 a 5; vacío,3,formulario
-17,d2_especies,D2. Especies de café más cultivadas,categórica,Arábica y robusta (acierto); Caturra y castillo; Excelso y supremo; No sé,Arábica y robusta,formulario
-18,d3_tostion,D3. Tostión clara frente a oscura,categórica,Más acidez y notas frutales (acierto); Más cuerpo y amargor; Más sabor a quemado; No sé,Más acidez y notas frutales,formulario
+17,d2_especies,D2. Especies de café más cultivadas,categórica,"Arábica y robusta (acierto); Caturra y castillo; Excelso y supremo; No sé. En campo también quedó activa ""De una finca o región identificada"" (respuesta correcta de la D2 anterior, café ""de origen""): ver flag_d2_version_anterior",Arábica y robusta,formulario
+18,d3_tostion,D3. Tostión clara frente a oscura,categórica,"Más acidez y notas frutales (acierto); Más cuerpo y amargor; Más sabor a quemado; No sé. En campo también quedó activa ""Un método de preparación por filtrado"" (respuesta correcta de la D3 anterior, V60); ""Más sabor a quemado"" no tuvo respuestas: ver flag_d3_version_anterior",Más acidez y notas frutales,formulario
 19,d4_proceso,"D4. ""Lavado"" o ""natural""",categórica,Cómo se procesó el grano (acierto); Tostión; Variedad; No sé,Cómo se procesó el grano después de la cosecha,formulario
 20,d5_puntaje85,D5. Café de 85 puntos,categórica,Calificación en taza (acierto); Cafeína; Precio por libra; No sé,No sé,formulario
 21,e1_01_50000,"E1.1 ""¿Compraría esa taza aquí hoy a $50.000?""",categórica,Sí; No; No está seguro; No responde; vacío = no se preguntó (ya dijo Sí antes),No,formulario
@@ -52,4 +52,9 @@
 51,dap_U,(derivada),pesos,Precio rechazado inmediatamente superior; vacío si aceptó $50.000,14000,derivada
 52,dap_tipo,(derivada),categórica,intervalo; censura_derecha (aceptó $50.000); censura_izquierda (rechazó todo); protesta; faltante,intervalo,derivada
 53,prima_min,(derivada),pesos,dap_L − b5_precio_tinto; vacío si falta alguno,10000,derivada
-54,conocimiento,(derivada),entero 0–4,"Aciertos en D2 a D5; ""No sé"" = 0",3,derivada
+54,conocimiento,(derivada),entero 0–2,"Aciertos en D4 y D5 (las dos preguntas iguales para todos los encuestados); ""No sé"" = 0. Corregida tras la Entrega 4: antes sumaba D2 a D5",1,derivada
+55,conocimiento_4items,(derivada),entero 0–4,Aciertos en D2 a D5 solo para quien no tiene respuestas de la versión anterior en D2 ni D3; vacío para el resto. Se usa como análisis de sensibilidad,3,derivada
+56,flag_d2_version_anterior,(derivada),0/1,"1 = respondió en D2 la opción de la versión anterior (""De una finca o región identificada"")",0,derivada
+57,flag_d3_version_anterior,(derivada),0/1,"1 = respondió en D3 la opción de la versión anterior (""Un método de preparación por filtrado"")",0,derivada
+58,prima_min_veces_tinto,(derivada),número,"prima_min ÷ b5_precio_tinto: cuántos tintos más vale la taza (corregida en la Entrega 5; antes era dap_L ÷ tinto)",5,derivada
+59,dap_veces_tinto,(derivada),número,"dap_L ÷ b5_precio_tinto: cuántos tintos vale la taza de filtrado",6,derivada

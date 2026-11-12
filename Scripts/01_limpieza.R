@@ -12,8 +12,12 @@
 #   5. Limpia montos (B2, B3, B5): 0 -> vacío; valores < 100 se leen en miles.
 #   6. Armoniza categorías (rangos de ingreso duplicados).
 #   7. Calcula las variables derivadas del protocolo: dap_L, dap_U, dap_tipo,
-#      prima_min, conocimiento (+ banderas de calidad).
-#   8. Define la muestra analítica (valida = 1) y el flujo de casos.
+#      prima_min, conocimiento (+ banderas de calidad). El conocimiento se
+#      corrigió tras la Entrega 4: D2 y D3 mezclan versiones, así que la medida
+#      principal usa D4 y D5 (iguales para todos) y se marcan las respuestas
+#      de la versión anterior.
+#   8. Define la muestra analítica (valida = 1), el flujo de casos y la
+#      cobertura por tienda (plan frente a lo ejecutado).
 #   9. Exporta la base limpia, el flujo de casos y un registro de limpieza.
 #
 # Solo usa R base (no requiere instalar paquetes).
@@ -187,15 +191,45 @@ stopifnot(!anyNA(d$dap_tipo),
 
 # Prima mínima frente al tinto (límite inferior de la DAP menos el tinto)
 d$prima_min <- d$dap_L - d$b5_precio_tinto
-d$prima_min_veces_tinto <- round(d$dap_L / d$b5_precio_tinto, 2)
+# Corrección (Entrega 5): antes esta variable era dap_L / tinto, que no es la prima.
+# Ahora la prima en veces el tinto es (dap_L - tinto) / tinto, como pide el plan,
+# y la DAP en veces el tinto queda aparte, en dap_veces_tinto.
+d$prima_min_veces_tinto <- round(d$prima_min / d$b5_precio_tinto, 2)
+d$dap_veces_tinto <- round(d$dap_L / d$b5_precio_tinto, 2)
+stopifnot(isTRUE(all.equal(d$dap_veces_tinto - d$prima_min_veces_tinto,
+                           ifelse(is.na(d$prima_min), NA, 1), tolerance = 0.02)))
 
-# Conocimiento: aciertos de D2 a D5 ("No sé" = no acierto); NA si no respondió el bloque
-aciertos <- cbind(d$d2_especies == "Arábica y robusta",
-                  d$d3_tostion  == "Más acidez y notas frutales",
-                  d$d4_proceso  == "Cómo se procesó el grano después de la cosecha",
-                  d$d5_puntaje85 == "Su calificación de calidad en taza, dada por catadores")
-d$conocimiento <- ifelse(rowSums(is.na(aciertos)) == 4, NA, rowSums(aciertos, na.rm = TRUE))
-stopifnot(all(na.omit(d$conocimiento) %in% 0:4))
+# Conocimiento (corregido tras la retroalimentación de la Entrega 4)
+# D2 y D3 mezclan versiones: durante el campo el formulario conservó la respuesta
+# correcta de las preguntas anteriores (V2 del protocolo: D2 café "de origen",
+# D3 V60). Quien eligió esas opciones no respondió la pregunta actual, y quien
+# respondió "No sé" pudo ver cualquiera de las dos versiones. Ver
+# Documentacion/Registro de versiones del instrumento.md
+OPCION_V2_D2 <- "De una finca o región identificada"
+OPCION_V2_D3 <- "Un método de preparación por filtrado"
+d$flag_d2_version_anterior <- as.integer(!is.na(d$d2_especies) & d$d2_especies == OPCION_V2_D2)
+d$flag_d3_version_anterior <- as.integer(!is.na(d$d3_tostion) & d$d3_tostion == OPCION_V2_D3)
+anotar("Reto cafetero: respuestas de la versión anterior en D2 = ", sum(d$flag_d2_version_anterior),
+       "; en D3 = ", sum(d$flag_d3_version_anterior))
+
+acierto <- function(x, correcta) ifelse(is.na(x), NA, x == correcta)
+a2 <- acierto(d$d2_especies,  "Arábica y robusta")
+a3 <- acierto(d$d3_tostion,   "Más acidez y notas frutales")
+a4 <- acierto(d$d4_proceso,   "Cómo se procesó el grano después de la cosecha")
+a5 <- acierto(d$d5_puntaje85, "Su calificación de calidad en taza, dada por catadores")
+
+# Medida principal: aciertos en D4 y D5 (0 a 2), las dos preguntas que fueron
+# idénticas para todos los encuestados en todas las versiones. "No sé" = no acierto.
+d$conocimiento <- ifelse(is.na(a4) & is.na(a5), NA, rowSums(cbind(a4, a5), na.rm = TRUE))
+stopifnot(all(na.omit(d$conocimiento) %in% 0:2))
+
+# Sensibilidad: aciertos de D2 a D5 (0 a 4), solo para quien no tiene ninguna
+# respuesta de la versión anterior en D2 o D3; NA para el resto.
+version_ok <- d$flag_d2_version_anterior == 0 & d$flag_d3_version_anterior == 0
+d$conocimiento_4items <- ifelse(version_ok & !(is.na(a2) & is.na(a3) & is.na(a4) & is.na(a5)),
+                                rowSums(cbind(a2, a3, a4, a5), na.rm = TRUE), NA)
+stopifnot(all(na.omit(d$conocimiento_4items) %in% 0:4),
+          all(is.na(d$conocimiento_4items[!version_ok])))
 
 # Grupos definidos en el plan de análisis
 d$grupo_estrato <- cut(as.numeric(d$g5_estrato), c(-Inf, 3, 4, Inf), labels = c("3 o menos", "4", "5 o más"))
@@ -204,7 +238,10 @@ d$grupo_ingreso <- ifelse(d$g4_ingreso %in% orden_ingreso[1:3], "Hasta 4 SMMLV",
 d$grupo_educacion <- ifelse(d$g2_educacion %in% c("Bachillerato o menos", "Técnico o tecnológico", "Pregrado en curso"), "Sin pregrado",
                      ifelse(d$g2_educacion == "Pregrado completo", "Pregrado",
                      ifelse(d$g2_educacion == "Posgrado", "Posgrado", NA)))
-d$grupo_conocimiento <- cut(d$conocimiento, c(-Inf, 1, 3, 4), labels = c("0-1", "2-3", "4"))
+# Conocimiento: los grupos 0-1 / 2-3 / 4 del plan suponían 4 preguntas; con la medida
+# corregida (D4 y D5) los grupos son 0, 1 y 2 aciertos.
+d$grupo_conocimiento <- factor(d$conocimiento, levels = 0:2,
+                               labels = c("0 aciertos", "1 acierto", "2 aciertos"))
 d$grupo_frecuencia <- ifelse(d$c1_frec_especialidad %in% c("Menos de una vez al mes", "1 a 3 veces al mes"), "Menos de semanal",
                       ifelse(is.na(d$c1_frec_especialidad), NA, "Semanal o más"))
 
@@ -239,6 +276,27 @@ por_tienda <- aggregate(cbind(registradas = 1, validas = d$valida) ~ z2_tienda +
 write.csv(por_tienda[order(por_tienda$z2_tienda), ], "Datos/limpios/resumen_por_tienda.csv",
           row.names = FALSE, fileEncoding = "UTF-8")
 
+# Cobertura: plan de ruta frente a lo ejecutado, para las 28 tiendas de la hoja.
+# Incluye las tiendas sin encuestas, el rol, la meta y las fechas en que se
+# registraron las encuestas en Google Forms (que pueden ser posteriores a la visita).
+fechas_tienda <- tapply(format(d$fecha), d$z2_tienda, function(x) paste(sort(unique(x)), collapse = "; "))
+cobertura <- data.frame(codigo = tiendas[["código"]], tienda = tiendas[["tienda (plan de ruta)"]],
+                        rol = tiendas[["rol"]], dia_plan = tiendas[["día"]], zona = tiendas[["zona"]],
+                        meta = tiendas[["meta"]], stringsAsFactors = FALSE)
+cobertura$registradas <- as.integer(table(factor(d$z2_tienda, levels = cobertura$codigo)))
+cobertura$validas <- as.integer(tapply(d$valida, factor(d$z2_tienda, levels = cobertura$codigo), sum))
+cobertura$validas[is.na(cobertura$validas)] <- 0L
+cobertura$fechas_registro_forms <- unname(fechas_tienda[cobertura$codigo])
+cobertura$estado <- ifelse(cobertura$validas > 0, "Con encuestas válidas",
+                    ifelse(cobertura$registradas > 0, "Visitada, sin encuestas válidas", "No visitada"))
+stopifnot(sum(cobertura$registradas) == nrow(d), sum(cobertura$validas) == sum(d$valida),
+          all(cobertura$registradas == tiendas[["logradas"]]))
+write.csv(cobertura, "Datos/limpios/cobertura_por_tienda.csv", row.names = FALSE,
+          fileEncoding = "UTF-8", na = "")
+anotar("Cobertura: ", sum(cobertura$registradas > 0), " cafeterías con registros, ",
+       sum(cobertura$validas > 0), " con encuestas válidas; principales cubiertas = ",
+       sum(cobertura$rol == "Principal" & cobertura$validas > 0), " de ", sum(cobertura$rol == "Principal"))
+
 # --- 9. Exportar ----------------------------------------------------------------
 orden <- c("id_encuesta", "registro_ficticio", "marca_temporal", "fecha", "z1_encuestador",
            "z2_tienda", "tienda_nombre", "tienda_zona", "tienda_rol", "latitud", "longitud", "z3_franja",
@@ -248,8 +306,11 @@ orden <- c("id_encuesta", "registro_ficticio", "marca_temporal", "fecha", "z1_en
            "b2_precio_pagado", "b3_gasto_total", "b4_incluye_otros", "b5_precio_tinto",
            "f1_atributo1", "f2_atributo2", "g1_edad", "g2_educacion", "g3_ocupacion",
            "g4_ingreso", "g5_estrato", "z6_atencion", "z7_escucho", "z8_interrupcion",
-           "dap_L", "dap_U", "dap_tipo", "prima_min", "prima_min_veces_tinto", "conocimiento",
+           "dap_L", "dap_U", "dap_tipo", "prima_min", "prima_min_veces_tinto", "dap_veces_tinto",
+           "conocimiento",
+           "conocimiento_4items",
            "grupo_estrato", "grupo_ingreso", "grupo_educacion", "grupo_conocimiento", "grupo_frecuencia",
+           "flag_d2_version_anterior", "flag_d3_version_anterior",
            "flag_no_seguro", "flag_escalera_incompleta", "flag_monto_corregido",
            "flag_b3_atipico", "flag_tinto_atipico", "flag_b3_menor_b2", "valida", "motivo_exclusion")
 stopifnot(all(orden %in% names(d)))

@@ -22,6 +22,7 @@ Esta carpeta tiene la **estructura de la base de datos** de la encuesta, lista a
 | `limpios/base_analisis.csv` | Solo las 81 observaciones válidas (`valida = 1`) |
 | `limpios/flujo_casos.csv` | De 89 registros a 81 válidas, con cada motivo de exclusión |
 | `limpios/resumen_por_tienda.csv` | Encuestas registradas y válidas por cafetería, con coordenadas |
+| `limpios/cobertura_por_tienda.csv` | Las 28 tiendas de la hoja: rol, día del plan, meta, encuestas registradas y válidas, fechas de registro en Forms y estado (con válidas, visitada sin válidas o no visitada) |
 | `limpios/registro_limpieza.txt` | Registro de cada corrección que hizo el script |
 | `base_estructura_fila_ficticia.csv` | La base: una fila por encuesta y una columna por variable (54), en el orden del cuestionario, con una observación ficticia |
 | `diccionario_variables.csv` | Cada variable con el título de su pregunta en el formulario, el tipo, los valores permitidos, el valor de la fila ficticia y su origen (formulario o derivada) |
@@ -48,7 +49,7 @@ Esta carpeta tiene la **estructura de la base de datos** de la encuesta, lista a
 | `dap_L` · `dap_U` · `dap_tipo` | 12000 · 14000 · intervalo | La DAP está entre $12.000 y $14.000 |
 | `prima_min` | 10000 | `dap_L` menos el precio del tinto |
 
-Las variables derivadas (`dap_L`, `dap_U`, `dap_tipo`, `prima_min` y `conocimiento`) se calculan con [`Scripts/01_limpieza.R`](../Scripts/01_limpieza.R), nunca a mano. Los montos que la persona no recuerda o no quiere decir quedan **vacíos**: no se escribe 0 ni un valor estimado.
+Las variables derivadas (`dap_L`, `dap_U`, `dap_tipo`, `prima_min`, `prima_min_veces_tinto`, `dap_veces_tinto` y `conocimiento`) se calculan con [`Scripts/01_limpieza.R`](../Scripts/01_limpieza.R), nunca a mano. Los montos que la persona no recuerda o no quiere decir quedan **vacíos**: no se escribe 0 ni un valor estimado.
 
 El detalle de la escalera, la meta de 160 encuestas y el plan de análisis está en [`Documentacion/Protocolo de trabajo de campo.pdf`](../Documentacion/Protocolo%20de%20trabajo%20de%20campo.pdf).
 
@@ -64,8 +65,9 @@ El detalle de la escalera, la meta de 160 encuestas y el plan de análisis está
 | Atípicos | Se conservan con bandera: tinto > $6.000 (`flag_tinto_atipico`, 6), gasto total < $1.000 (`flag_b3_atipico`, 1), gasto total < precio pagado (`flag_b3_menor_b2`, 1) |
 | Ingreso | "Hasta $1,75 millones" y "Menos de $1,75 millones" se unen |
 | `id_encuesta` | Tienda-iniciales-consecutivo; el consecutivo se cuenta por encuestador dentro de cada tienda para que no se repita entre días |
-| Conocimiento | Aciertos de D2 a D5 (0 a 4); "No sé" = no acierto |
-| Grupos | `grupo_estrato`, `grupo_ingreso`, `grupo_educacion`, `grupo_conocimiento` y `grupo_frecuencia`, como en el plan de análisis |
+| Conocimiento (corregido) | D2 y D3 mezclan versiones: el formulario conservó la respuesta correcta de las preguntas anteriores ("de origen" y V60), que eligieron 12 personas en D2 y 13 en D3. Por eso `conocimiento` = aciertos en **D4 y D5** (0 a 2), las únicas iguales para todos; "No sé" = no acierto. Las respuestas viejas se marcan con `flag_d2_version_anterior` y `flag_d3_version_anterior`, y `conocimiento_4items` (D2 a D5) solo se calcula para quien no tiene ninguna, como sensibilidad. Ver [`Registro de versiones del instrumento.md`](../Documentacion/Registro%20de%20versiones%20del%20instrumento.md) |
+| Prima en tintos (corregida) | `prima_min_veces_tinto` = (`dap_L` − tinto) ÷ tinto, como pide el plan; antes era `dap_L` ÷ tinto. Esa razón quedó aparte en `dap_veces_tinto` |
+| Grupos | `grupo_estrato`, `grupo_ingreso`, `grupo_educacion`, `grupo_conocimiento` y `grupo_frecuencia`, como en el plan de análisis. Con la medida corregida, `grupo_conocimiento` es 0, 1 o 2 aciertos (antes 0-1, 2-3 y 4) |
 
 **Resultado:** 89 registros → **81 observaciones finales válidas** (74 intervalos cerrados, 4 con censura a la derecha, 3 con censura a la izquierda).
 
