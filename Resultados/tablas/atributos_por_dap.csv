@@ -1,0 +1,22 @@
+nivel,n,atributo,pct
+Por debajo,23,Sabor,0.3913
+Por debajo,23,Aroma,0.3478
+Por debajo,23,Método de preparación,0.2609
+Por debajo,23,Origen del café (finca o región),0.087
+Por debajo,23,Ambiente del lugar,0.3913
+Por debajo,23,Atención o servicio,0.3043
+Por debajo,23,Precio,0.1739
+En $12.000,10,Sabor,0.6
+En $12.000,10,Aroma,0.3
+En $12.000,10,Método de preparación,0.4
+En $12.000,10,Origen del café (finca o región),0.1
+En $12.000,10,Ambiente del lugar,0.3
+En $12.000,10,Atención o servicio,0.2
+En $12.000,10,Precio,0.1
+Por encima,48,Sabor,0.5417
+Por encima,48,Aroma,0.2917
+Por encima,48,Método de preparación,0.2083
+Por encima,48,Origen del café (finca o región),0.2708
+Por encima,48,Ambiente del lugar,0.2917
+Por encima,48,Atención o servicio,0.1458
+Por encima,48,Precio,0.2292

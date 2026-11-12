@@ -1,0 +1,17 @@
+variable,dimension,grupo,n,acepta_12000,ji2,gl,p_valor,niveles_dap,esperada_menor_5
+grupo_estrato,Estrato,3 o menos,23,0.5652,7.749,2,0.0208,2,False
+grupo_estrato,Estrato,4,29,0.6552,7.749,2,0.0208,2,False
+grupo_estrato,Estrato,5 o más,29,0.8966,7.749,2,0.0208,2,False
+grupo_ingreso,Ingreso del hogar,Hasta 4 SMMLV,30,0.5667,6.638,1,0.01,2,False
+grupo_ingreso,Ingreso del hogar,Más de 4 SMMLV,39,0.8462,6.638,1,0.01,2,False
+grupo_conocimiento,Cuánto sabe de café,0 aciertos,25,0.68,3.437,2,0.1794,2,False
+grupo_conocimiento,Cuánto sabe de café,1 acierto,38,0.6579,3.437,2,0.1794,2,False
+grupo_conocimiento,Cuánto sabe de café,2 aciertos,18,0.8889,3.437,2,0.1794,2,False
+grupo_educacion,Educación,Sin pregrado,45,0.7778,2.183,2,0.3357,2,True
+grupo_educacion,Educación,Pregrado,23,0.6087,2.183,2,0.3357,2,True
+grupo_educacion,Educación,Posgrado,13,0.6923,2.183,2,0.3357,2,True
+grupo_frecuencia,Qué tan seguido toma café,Menos de semanal,37,0.6757,0.546,1,0.4599,2,False
+grupo_frecuencia,Qué tan seguido toma café,Semanal o más,44,0.75,0.546,1,0.4599,2,False
+conocimiento_4items (sensibilidad),"Conocimiento, 4 preguntas",0-1,21,0.5238,7.089,2,0.0289,2,True
+conocimiento_4items (sensibilidad),"Conocimiento, 4 preguntas",2-3,29,0.7586,7.089,2,0.0289,2,True
+conocimiento_4items (sensibilidad),"Conocimiento, 4 preguntas",4,8,1.0,7.089,2,0.0289,2,True
