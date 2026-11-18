@@ -1,0 +1,71 @@
+variable,dimension,grupo,n,atributo,pct,se_grafica
+grupo_estrato,Estrato,3 o menos,23,Sabor,0.4783,False
+grupo_estrato,Estrato,3 o menos,23,Aroma,0.2174,False
+grupo_estrato,Estrato,3 o menos,23,Método de preparación,0.3043,False
+grupo_estrato,Estrato,3 o menos,23,Origen del café (finca o región),0.1304,False
+grupo_estrato,Estrato,3 o menos,23,Ambiente del lugar,0.4348,False
+grupo_estrato,Estrato,3 o menos,23,Atención o servicio,0.2609,False
+grupo_estrato,Estrato,3 o menos,23,Precio,0.1304,False
+grupo_estrato,Estrato,4,29,Sabor,0.5172,False
+grupo_estrato,Estrato,4,29,Aroma,0.3448,False
+grupo_estrato,Estrato,4,29,Método de preparación,0.2069,False
+grupo_estrato,Estrato,4,29,Origen del café (finca o región),0.1724,False
+grupo_estrato,Estrato,4,29,Ambiente del lugar,0.3793,False
+grupo_estrato,Estrato,4,29,Atención o servicio,0.1379,False
+grupo_estrato,Estrato,4,29,Precio,0.2069,False
+grupo_estrato,Estrato,5 o más,29,Sabor,0.5172,False
+grupo_estrato,Estrato,5 o más,29,Aroma,0.3448,False
+grupo_estrato,Estrato,5 o más,29,Método de preparación,0.2414,False
+grupo_estrato,Estrato,5 o más,29,Origen del café (finca o región),0.2759,False
+grupo_estrato,Estrato,5 o más,29,Ambiente del lugar,0.1724,False
+grupo_estrato,Estrato,5 o más,29,Atención o servicio,0.2069,False
+grupo_estrato,Estrato,5 o más,29,Precio,0.2414,False
+grupo_ingreso,Ingreso del hogar,Hasta 4 SMMLV,30,Sabor,0.4667,True
+grupo_ingreso,Ingreso del hogar,Hasta 4 SMMLV,30,Aroma,0.3,True
+grupo_ingreso,Ingreso del hogar,Hasta 4 SMMLV,30,Método de preparación,0.3,True
+grupo_ingreso,Ingreso del hogar,Hasta 4 SMMLV,30,Origen del café (finca o región),0.2,True
+grupo_ingreso,Ingreso del hogar,Hasta 4 SMMLV,30,Ambiente del lugar,0.4,True
+grupo_ingreso,Ingreso del hogar,Hasta 4 SMMLV,30,Atención o servicio,0.1667,True
+grupo_ingreso,Ingreso del hogar,Hasta 4 SMMLV,30,Precio,0.1,True
+grupo_ingreso,Ingreso del hogar,Más de 4 SMMLV,39,Sabor,0.5385,True
+grupo_ingreso,Ingreso del hogar,Más de 4 SMMLV,39,Aroma,0.2564,True
+grupo_ingreso,Ingreso del hogar,Más de 4 SMMLV,39,Método de preparación,0.2308,True
+grupo_ingreso,Ingreso del hogar,Más de 4 SMMLV,39,Origen del café (finca o región),0.2308,True
+grupo_ingreso,Ingreso del hogar,Más de 4 SMMLV,39,Ambiente del lugar,0.2564,True
+grupo_ingreso,Ingreso del hogar,Más de 4 SMMLV,39,Atención o servicio,0.2564,True
+grupo_ingreso,Ingreso del hogar,Más de 4 SMMLV,39,Precio,0.2308,True
+grupo_conocimiento,Conocimiento (D4 y D5),0 aciertos,25,Sabor,0.48,False
+grupo_conocimiento,Conocimiento (D4 y D5),0 aciertos,25,Aroma,0.4,False
+grupo_conocimiento,Conocimiento (D4 y D5),0 aciertos,25,Método de preparación,0.24,False
+grupo_conocimiento,Conocimiento (D4 y D5),0 aciertos,25,Origen del café (finca o región),0.2,False
+grupo_conocimiento,Conocimiento (D4 y D5),0 aciertos,25,Ambiente del lugar,0.28,False
+grupo_conocimiento,Conocimiento (D4 y D5),0 aciertos,25,Atención o servicio,0.12,False
+grupo_conocimiento,Conocimiento (D4 y D5),0 aciertos,25,Precio,0.2,False
+grupo_conocimiento,Conocimiento (D4 y D5),1 acierto,38,Sabor,0.5526,False
+grupo_conocimiento,Conocimiento (D4 y D5),1 acierto,38,Aroma,0.2368,False
+grupo_conocimiento,Conocimiento (D4 y D5),1 acierto,38,Método de preparación,0.2368,False
+grupo_conocimiento,Conocimiento (D4 y D5),1 acierto,38,Origen del café (finca o región),0.1842,False
+grupo_conocimiento,Conocimiento (D4 y D5),1 acierto,38,Ambiente del lugar,0.2632,False
+grupo_conocimiento,Conocimiento (D4 y D5),1 acierto,38,Atención o servicio,0.2632,False
+grupo_conocimiento,Conocimiento (D4 y D5),1 acierto,38,Precio,0.2632,False
+grupo_conocimiento,Conocimiento (D4 y D5),2 aciertos,18,Sabor,0.4444,False
+grupo_conocimiento,Conocimiento (D4 y D5),2 aciertos,18,Aroma,0.3333,False
+grupo_conocimiento,Conocimiento (D4 y D5),2 aciertos,18,Método de preparación,0.2778,False
+grupo_conocimiento,Conocimiento (D4 y D5),2 aciertos,18,Origen del café (finca o región),0.2222,False
+grupo_conocimiento,Conocimiento (D4 y D5),2 aciertos,18,Ambiente del lugar,0.5,False
+grupo_conocimiento,Conocimiento (D4 y D5),2 aciertos,18,Atención o servicio,0.1667,False
+grupo_conocimiento,Conocimiento (D4 y D5),2 aciertos,18,Precio,0.0556,False
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Menos de semanal,37,Sabor,0.5405,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Menos de semanal,37,Aroma,0.4054,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Menos de semanal,37,Método de preparación,0.2432,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Menos de semanal,37,Origen del café (finca o región),0.1351,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Menos de semanal,37,Ambiente del lugar,0.3243,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Menos de semanal,37,Atención o servicio,0.1081,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Menos de semanal,37,Precio,0.2162,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Semanal o más,44,Sabor,0.4773,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Semanal o más,44,Aroma,0.2273,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Semanal o más,44,Método de preparación,0.25,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Semanal o más,44,Origen del café (finca o región),0.25,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Semanal o más,44,Ambiente del lugar,0.3182,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Semanal o más,44,Atención o servicio,0.2727,True
+grupo_frecuencia,Frecuencia en cafeterías de especialidad,Semanal o más,44,Precio,0.1818,True

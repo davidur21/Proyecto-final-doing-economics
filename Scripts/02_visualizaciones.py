@@ -14,6 +14,7 @@ Genera las figuras del proyecto. Hay dos grupos:
     fig4_pagarian_lo_que_pagaron   DAP frente a lo que pagaron hoy (gráfico de 100 cuadros)
     fig5_quien_paga_mas            % que compraría a $12.000, por grupo
     fig6_que_buscan                Atributos según la DAP quede por encima o por debajo de $12.000
+    fig7_atributos_por_grupo       Atributos según el ingreso y la frecuencia (cruce descriptivo)
 
   Anexo técnico (Resultados/figuras/anexo/): lo que pide el plan de análisis del protocolo.
     A1_curvas_por_grupo            Curvas de aceptación por grupo, con χ² y la sensibilidad
@@ -400,7 +401,9 @@ for var, nombre, orden, etiq in grupos:
     y -= 0.55
     ax.text(-0.005, y, nombre, transform=ax.get_yaxis_transform(), ha="right", va="center",
             fontsize=13, fontweight="bold", color=TINTA)
-    ax.text(1.0, y, "Diferencia clara" if clara else "Diferencia pequeña o al azar",
+    dif_pp = round(sub.acepta_12000.iloc[-1] * 100) - round(sub.acepta_12000.iloc[0] * 100)
+    veredicto = "clara" if clara else "puede ser azar"
+    ax.text(1.0, y, f"{dif_pp:+d} puntos · {veredicto} ({p_texto(p)})".replace("-", "−"),
             transform=ax.get_yaxis_transform(), ha="right", va="center", fontsize=11,
             color=VINO if clara else TINTA2, fontweight="bold" if clara else "normal")
     y -= 0.2
@@ -420,11 +423,11 @@ ax.xaxis.set_visible(False)
 for s in ("bottom", "left"):
     ax.spines[s].set_visible(False)
 ax.axvline(0.5, color=GRIS_CLARO, lw=1, zorder=0)
-encabezado(fig, "El estrato y el ingreso marcan la diferencia; saber de café, no tanto",
+encabezado(fig, "El estrato y el ingreso marcan una diferencia clara; en conocimiento, la muestra no alcanza",
            "De cada 100 clientes de cada grupo, cuántos comprarían una taza de filtrado a $12.000")
-pie(fig, "“Diferencia clara”: prueba ji cuadrado con p < 0,05. Las preguntas de conocimiento son D4 y D5, las únicas "
-         "iguales para todos los encuestados (ver el registro de versiones).\nEl ingreso excluye a 12 personas que no lo "
-         "reportaron. Son asociaciones, no causas.")
+pie(fig, "Puntos: diferencia entre el primer y el último grupo. “Clara” (vino): prueba ji cuadrado con p < 0,05, es decir, "
+         "una diferencia así casi nunca saldría solo por azar.\n“Puede ser azar” (gris): no se descarta que sea azar; "
+         "no prueba que no haya diferencia. Conocimiento = D4 y D5. El ingreso excluye a 12 personas. Asociaciones, no causas.")
 guardar(fig, "fig5_quien_paga_mas")
 
 # ===========================================================================
@@ -474,6 +477,81 @@ encabezado(fig, "Los que pagarían más buscan origen y sabor; los demás, ambie
 pie(fig, f"Cada persona eligió dos aspectos, por eso cada grupo suma 200. No se muestran las {n_niv['En $12.000']} "
          "personas cuyo precio máximo fue justo $12.000 (están en la tabla de apoyo).")
 guardar(fig, "fig6_que_buscan")
+
+# ===========================================================================
+# FIGURA 7. Atributos por ingreso y por frecuencia (cruce descriptivo)
+# Completa el mecanismo del marco: características del cliente -> atributos que valora.
+# Solo se grafican los cruces con al menos 30 personas por grupo (ingreso y frecuencia);
+# la tabla de apoyo trae también estrato y conocimiento, que tienen grupos más pequeños.
+# ===========================================================================
+MIN_N = 30
+cruces = [
+    ("grupo_estrato", "Estrato", ["3 o menos", "4", "5 o más"]),
+    ("grupo_ingreso", "Ingreso del hogar", ["Hasta 4 SMMLV", "Más de 4 SMMLV"]),
+    ("grupo_conocimiento", "Conocimiento (D4 y D5)", ["0 aciertos", "1 acierto", "2 aciertos"]),
+    ("grupo_frecuencia", "Frecuencia en cafeterías de especialidad", ["Menos de semanal", "Semanal o más"]),
+]
+filas_cr = []
+for var, nombre, orden in cruces:
+    for g in orden:
+        sub = d[d[var].astype(str) == g]
+        for a in ATRIB:
+            filas_cr.append({"variable": var, "dimension": nombre, "grupo": g, "n": len(sub), "atributo": a,
+                             "pct": round(((sub["f1_atributo1"] == a) | (sub["f2_atributo2"] == a)).mean(), 4)})
+cr = pd.DataFrame(filas_cr)
+cr["se_grafica"] = cr.groupby("variable")["n"].transform("min") >= MIN_N
+cr.to_csv(TAB_DIR / "atributos_por_grupo.csv", index=False)
+
+paneles_cr = [("grupo_ingreso", "Según el ingreso del hogar", "Hasta 4 SMMLV", "Más de 4 SMMLV",
+               "Hasta 4 salarios mínimos", "Más de 4 salarios mínimos"),
+              ("grupo_frecuencia", "Según qué tan seguido toma café de especialidad", "Menos de semanal",
+               "Semanal o más", "Menos de una vez a la semana", "Cada semana o más")]
+assert all(cr[cr.variable == v]["n"].min() >= MIN_N for v, *_ in paneles_cr)
+fig, axes = plt.subplots(1, 2, figsize=(15, 7.8), sharey=False)
+fig.subplots_adjust(left=0.13, right=0.98, top=0.74, bottom=0.14, wspace=0.42)
+for ax, (var, titulo, g_bajo, g_alto, et_bajo, et_alto) in zip(axes, paneles_cr):
+    sub = cr[cr.variable == var].pivot(index="atributo", columns="grupo", values="pct")
+    sub["brecha"] = sub[g_alto] - sub[g_bajo]
+    sub = sub.sort_values("brecha")
+    n_b = int(cr[(cr.variable == var) & (cr.grupo == g_bajo)].n.iloc[0])
+    n_a = int(cr[(cr.variable == var) & (cr.grupo == g_alto)].n.iloc[0])
+    yy = np.arange(len(sub))
+    for yi, (_, r) in zip(yy, sub.iterrows()):
+        a, b = r[g_bajo], r[g_alto]
+        ax.annotate("", xy=(b, yi), xytext=(a, yi),
+                    arrowprops=dict(arrowstyle="-", color=GRIS_CLARO, lw=6, shrinkA=0, shrinkB=0), zorder=1)
+        dy = 0.14 if abs(a - b) < 0.03 else 0  # si casi empatan, se separan en vertical para verse los dos
+        ax.scatter([a], [yi + dy], s=150, color=AZUL, edgecolor=FONDO, lw=2, zorder=3)
+        ax.scatter([b], [yi - dy], s=150, color=VINO, edgecolor=FONDO, lw=2, zorder=3)
+        izq_es_azul = a <= b  # el valor menor va a la izquierda; si empatan, azul a la izquierda
+        for val, colr in ((a, AZUL), (b, VINO)):
+            lado = -1 if (colr == AZUL) == izq_es_azul else 1
+            ax.text(val + lado * 0.025, yi + (dy if colr == AZUL else -dy), f"{round(val * 100):.0f}", va="center",
+                    ha="left" if lado > 0 else "right", fontsize=11.5, fontweight="bold", color=colr)
+    ax.set_yticks(yy, [nombres.get(a, a) for a in sub.index], fontsize=12)
+    ax.set_xlim(-0.02, 0.68)
+    ax.xaxis.set_visible(False)
+    for s_ in ("bottom", "left"):
+        ax.spines[s_].set_visible(False)
+    ax.set_title(titulo, pad=48, fontsize=14)
+    ax.scatter([], [], s=120, color=AZUL, label=f"{et_bajo} (n = {n_b})")
+    ax.scatter([], [], s=120, color=VINO, label=f"{et_alto} (n = {n_a})")
+    ax.legend(loc="lower left", bbox_to_anchor=(-0.02, 1.0), ncol=1, fontsize=11, handletextpad=0.3)
+ing = cr[cr.variable == "grupo_ingreso"].pivot(index="atributo", columns="grupo", values="pct")
+frq = cr[cr.variable == "grupo_frecuencia"].pivot(index="atributo", columns="grupo", values="pct")
+sabor_top = all(cr[(cr.variable == v)].sort_values("pct").groupby("grupo").tail(1).atributo.eq("Sabor").all()
+                for v, *_ in paneles_cr)
+assert sabor_top, "El título dice que el sabor es lo más mencionado en todos los grupos"
+encabezado(fig, "El sabor es lo que más pesa en todos los grupos; el ingreso y la frecuencia cambian poco el resto",
+           "De cada 100 clientes de cada grupo, cuántos ponen cada aspecto entre los dos más importantes al elegir café")
+pie(fig, "Cruce descriptivo, sin prueba estadística: con grupos de 30 a 44 personas, diferencias de menos de unos 20 puntos "
+         "pueden deberse al azar. Solo se muestran los cruces con al menos\n30 personas por grupo; estrato y conocimiento "
+         "están en Resultados/tablas/atributos_por_grupo.csv. El ingreso excluye a 12 personas que no lo reportaron.")
+guardar(fig, "fig7_atributos_por_grupo")
+# Chequeos de las cifras que cita el texto del informe
+assert round(frq.loc["Origen del café (finca o región)", "Semanal o más"] * 100) == 25
+assert round(frq.loc["Origen del café (finca o región)", "Menos de semanal"] * 100) == 14
+assert round(frq.loc["Atención o servicio", "Semanal o más"] * 100) == 27
 
 # ===========================================================================
 # ANEXO A1. Curvas de aceptación por grupo (plan de análisis)
@@ -570,4 +648,4 @@ pie(fig, "No se usa el punto medio del intervalo. “Menos de $6.000”: rechaz�
          "hasta $6.000 (ver el registro de versiones). n = 81.")
 guardar(fig, "A2_distribucion_dap", ANEXO_DIR)
 
-print(f"Listo: 6 figuras principales, 2 de anexo y {len(list(TAB_DIR.glob('*.csv')))} tablas de apoyo.")
+print(f"Listo: 7 figuras principales, 2 de anexo y {len(list(TAB_DIR.glob('*.csv')))} tablas de apoyo.")

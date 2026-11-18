@@ -3,7 +3,7 @@
 | Script | Qué hace | Entradas | Salidas |
 |---|---|---|---|
 | `01_limpieza.R` | Une los datos raw con las coordenadas, renombra variables, crea `id_encuesta`, corrige montos, calcula `dap_L`, `dap_U`, `dap_tipo`, `prima_min`, la prima en tintos y `conocimiento` (corregido: D4 y D5), define la muestra válida, el flujo de casos y la cobertura por tienda | `Datos/crudos/base_cruda_formulario.csv`, `Datos/hoja_tiendas.csv` | `Datos/crudos/base_cruda_con_coordenadas.csv`, `Datos/limpios/*` |
-| `02_visualizaciones.py` | Genera las 6 figuras principales (lenguaje sencillo, para cualquier público) y las 2 del anexo técnico que pide el plan de análisis (curvas por grupo con χ² y distribución de la DAP por intervalo), más las tablas de apoyo | `Datos/limpios/base_analisis.csv` | `Resultados/figuras/*.png` y `*.pdf`, `Resultados/figuras/anexo/`, `Resultados/tablas/*.csv` |
+| `02_visualizaciones.py` | Genera las 7 figuras principales (lenguaje sencillo, para cualquier público) y las 2 del anexo técnico que pide el plan de análisis (curvas por grupo con χ² y distribución de la DAP por intervalo), más las tablas de apoyo | `Datos/limpios/base_analisis.csv` | `Resultados/figuras/*.png` y `*.pdf`, `Resultados/figuras/anexo/`, `Resultados/tablas/*.csv` |
 
 **Orden:** primero `01_limpieza.R`, después `02_visualizaciones.py`.
 

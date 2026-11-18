@@ -55,7 +55,7 @@ Proyecto-final-doing-economics/
 │   ├── 01_limpieza.R          # Limpieza y variables derivadas (R base, sin paquetes)
 │   └── 02_visualizaciones.py  # Figuras del proyecto y tablas de apoyo (Python)
 ├── Resultados/
-│   ├── figuras/     # 6 figuras principales (PNG y PDF) y anexo técnico
+│   ├── figuras/     # 7 figuras principales (PNG y PDF) y anexo técnico
 │   ├── tablas/      # Tablas de apoyo de cada figura
 │   └── mapa_cafeterias.png
 └── README.md
@@ -67,7 +67,7 @@ Proyecto-final-doing-economics/
 |---|---|
 | <img src="Resultados/figuras/fig2_hasta_cuanto_pagarian.png" width="460"> | **La mitad de los clientes pagaría hasta $14.000 por un café filtrado.** Entre $14.000 y $16.000 se va la mitad. |
 | <img src="Resultados/figuras/fig3_cuantos_tintos_vale.png" width="460"> | **Para más de la mitad, un filtrado vale 4 tintos o más.** |
-| <img src="Resultados/figuras/fig5_quien_paga_mas.png" width="460"> | **El estrato y el ingreso marcan la diferencia; saber de café, no tanto.** A $12.000 compraría el 90 % del estrato 5 o más y el 57 % del estrato 3 o menos. |
+| <img src="Resultados/figuras/fig5_quien_paga_mas.png" width="460"> | **El estrato y el ingreso marcan una diferencia clara; con el conocimiento, la muestra no es concluyente.** A $12.000 compraría el 90 % del estrato 5 o más y el 57 % del estrato 3 o menos. |
 | <img src="Resultados/figuras/fig6_que_buscan.png" width="460"> | **Quienes pagarían más buscan origen y sabor; los demás, ambiente y atención.** |
 
 Todas las figuras y por qué elegimos cada una: [`Resultados/`](Resultados) y [`Documentacion/Entrega 5 - Visualizaciones.pdf`](Documentacion/Entrega%205%20-%20Visualizaciones.pdf).

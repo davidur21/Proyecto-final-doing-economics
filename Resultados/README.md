@@ -12,7 +12,7 @@ Por qué elegimos cada tipo de gráfica: [`Documentacion/Entrega 5 - Visualizaci
 
 ## 📊 Figuras principales (`figuras/`)
 
-Están pensadas para entenderse a primera vista, también por personas que no estudian economía. Cuentan la historia en seis pasos.
+Están pensadas para entenderse a primera vista, también por personas que no estudian economía. Cuentan la historia en siete pasos.
 
 | # | Archivo | Pregunta | Hallazgo |
 |---|---|---|---|
@@ -20,8 +20,9 @@ Están pensadas para entenderse a primera vista, también por personas que no es
 | 2 | `fig2_hasta_cuanto_pagarian` | ¿Hasta cuánto pagarían por un filtrado? | La mitad pagaría hasta $14.000; entre $14.000 y $16.000 se va la mitad |
 | 3 | `fig3_cuantos_tintos_vale` | ¿Cuántos tintos vale un filtrado? | Para 58 de cada 100, vale 4 tintos o más |
 | 4 | `fig4_pagarian_lo_que_pagaron` | ¿Pagarían lo que pagaron hoy? | 70 de cada 100 pagarían por un filtrado al menos lo que pagaron |
-| 5 | `fig5_quien_paga_mas` | ¿Quién paga más? | El estrato y el ingreso marcan la diferencia; el conocimiento, no de forma clara |
+| 5 | `fig5_quien_paga_mas` | ¿Quién paga más? | El estrato (+33 puntos) y el ingreso (+28) marcan una diferencia clara; el conocimiento (+21) no se distingue del azar con esta muestra |
 | 6 | `fig6_que_buscan` | ¿Qué buscan los que pagarían más? | Origen y sabor; quienes pagarían menos, ambiente y atención |
+| 7 | `fig7_atributos_por_grupo` | ¿Cambia lo que se valora con el ingreso o la frecuencia? | El sabor es lo primero en todos los grupos; las demás diferencias son pequeñas (cruce descriptivo) |
 
 ![](figuras/fig2_hasta_cuanto_pagarian.png)
 
@@ -42,6 +43,7 @@ Lo que pide el plan de análisis del protocolo.
 | `distribucion_dap.csv` | Clientes por intervalo de DAP |
 | `tintos_por_filtrado.csv` | Clientes según cuántos tintos vale el filtrado |
 | `comparaciones_grupos.csv` | Porcentaje que acepta $12.000 por grupo, ji cuadrado, grados de libertad, p, niveles de DAP usados y aviso de casilla pequeña |
+| `atributos_por_grupo.csv` | Porcentaje que menciona cada atributo según estrato, ingreso, conocimiento y frecuencia; marca qué cruces tienen al menos 30 personas por grupo |
 | `atributos_por_dap.csv` | Porcentaje que menciona cada atributo en 1.er o 2.º lugar, según la DAP quede por debajo, en o por encima de $12.000 |
 
 ## 🎨 Criterios de diseño

@@ -16,11 +16,14 @@
 | `evidencia_campo/` | Fotos del trabajo de campo (sin encuestados; las personas que aparecen autorizaron la foto) |
 | **`Entrega 5 - Visualizaciones.docx` / `.pdf`** | **Qué muestra cada gráfica, por qué elegimos ese tipo de gráfica y cómo respondimos a la retroalimentación de la Entrega 4** |
 | **`Registro de versiones del instrumento.md`** | **Versiones del protocolo y del formulario con sus fechas (escalera, preguntas de conocimiento, pregunta abierta), verificación en la base de si se mezclaron versiones y cobertura planeada frente a la ejecutada** |
-| **`Informe Final.docx`** | **Documento final del proyecto** |
+| **`Informe Final.docx` / `Informe Final Completo.pdf`** | **Documento final del proyecto (Entrega 6), con las correcciones del profesor del 18 de noviembre** |
+| **`Guion del video - El experimento de la taza.docx` / `.pdf`** | **Guion y storyboard del video: voz, pantalla, tiempo y transición de cada segmento** |
 | **`Plan de ruta.pdf`** | **Cafeterías de Chapinero que vamos a visitar y recorrido del trabajo de campo** |
 | **`Protocolo de trabajo de campo.pdf`** | **Protocolo de la encuesta: diseño, muestra, cuestionario, consentimiento, logística y plan de análisis** |
 
 > **`Informe Final.docx` es la versión definitiva del proyecto.** Reúne todas las correcciones del profesor en las entregas anteriores: motivación con la fuente central (Jaimes, 2026) separada de nuestra interpretación, pregunta general y preguntas específicas integradas, alcance en Chapinero, marco teórico condensado con su diagrama, modelo de decisión de compra (insumos, actividades, productos y resultados), revisión de literatura con protocolo PRISMA 2020 y referencias en APA 7. Las entregas anteriores se conservan solo como historial.
+
+**Correcciones de la Entrega 6 (18 de noviembre).** En el informe: explicación de la prueba ji cuadrado, el valor p y el color de significancia para lectores sin formación en estadística (sección 6.8, con un ejemplo); comparaciones con porcentajes, diferencias en puntos y tamaños de grupo (Tabla 3); nuevo cruce descriptivo de atributos por ingreso y por frecuencia (Figura 10); Consensus citado como herramienta de búsqueda en nota al pie, no como base de datos; $12.000 descrito como la mediana del precio pagado; equivalente total de 4 tintos separado de la prima mínima de 3; «decir y pagar» a partir de los 20 que compraron filtrado; primer «sí» como límite inferior observado; y conclusiones sobre el conocimiento más prudentes. En el guion: antecedentes de mercado recortados, segmento de objetivos reemplazado por el modelo y los mismos ajustes de cifras. El detalle está al final del guion.
 
 ---
 
