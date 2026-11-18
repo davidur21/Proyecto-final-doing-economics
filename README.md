@@ -4,7 +4,7 @@
 
 ![Universidad del Rosario](https://img.shields.io/badge/Universidad%20del%20Rosario-Haciendo%20Econom%C3%ADa%202026--2-8B1E2D)
 ![Eje](https://img.shields.io/badge/Eje-Demanda%20y%20comportamiento%20del%20consumidor-1F4E5F)
-![Estado](https://img.shields.io/badge/Estado-Visualizaciones-5A6B70)
+![Estado](https://img.shields.io/badge/Estado-Informe%20final-5A6B70)
 
 **Profesor:** Paul Rodríguez L.
 **Estudiantes:** Santiago Gómez, Camilo Ospina, Emily Rodríguez y David Pascagaza
