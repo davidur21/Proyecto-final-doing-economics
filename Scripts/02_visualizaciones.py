@@ -2,7 +2,7 @@
 """
 02_visualizaciones.py
 ¿Quién paga la diferencia? Disposición a pagar (DAP) por café de especialidad en Chapinero
-Haciendo Economía 2026-2 · Universidad del Rosario · Prof. Paul Rodríguez L.
+Haciendo Economía 2026-2, Universidad del Rosario. Prof. Paul Rodríguez L.
 
 Genera las figuras del proyecto. Hay dos grupos:
 
@@ -26,7 +26,7 @@ Salidas : figuras en PNG (300 dpi) y PDF; tablas de apoyo en Resultados/tablas/
 
 Reglas que sigue el código (plan de análisis, sección 9 del protocolo):
   - La DAP es un intervalo [dap_L, dap_U); nunca se usa el punto medio.
-  - Curva de aceptación con la muestra completa en cada precio; IC 95 % = p ± 1,96·√(p(1−p)/n).
+  - Curva de aceptación con la muestra completa en cada precio; IC 95 % = p ± 1,96 × √(p(1−p)/n).
   - Precio de referencia para comparar grupos: $12.000.
   - Conocimiento = aciertos en D4 y D5 (corregido tras la Entrega 4; ver
     Documentacion/Registro de versiones del instrumento.md).
@@ -390,22 +390,24 @@ for g in ["0-1", "2-3", "4"]:
                            "esperada_menor_5": aviso}
 comp.to_csv(TAB_DIR / "comparaciones_grupos.csv", index=False)
 
-fig, ax = plt.subplots(figsize=(13, 9.6))
-fig.subplots_adjust(left=0.30, right=0.90, top=0.84, bottom=0.10)
+fig, ax = plt.subplots(figsize=(13, 10.4))
+fig.subplots_adjust(left=0.30, right=0.90, top=0.85, bottom=0.09)
 y = 0
 yticks, ylabels = [], []
 for var, nombre, orden, etiq in grupos:
     sub = comp[comp.variable == var]
     p = sub.p_valor.iloc[0]
     clara = p < 0.05
+    clave = var == "grupo_conocimiento"  # la prueba de conocimiento se resalta como parte clave
+    y_tope = y - 0.05
     y -= 0.55
     ax.text(-0.005, y, nombre, transform=ax.get_yaxis_transform(), ha="right", va="center",
-            fontsize=13, fontweight="bold", color=TINTA)
+            fontsize=13, fontweight="bold", color=VINO if clave else TINTA)
     dif_pp = round(sub.acepta_12000.iloc[-1] * 100) - round(sub.acepta_12000.iloc[0] * 100)
     veredicto = "clara" if clara else "puede ser azar"
-    ax.text(1.0, y, f"{dif_pp:+d} puntos · {veredicto} ({p_texto(p)})".replace("-", "−"),
+    ax.text(1.0, y, f"{dif_pp:+d} puntos, {veredicto} ({p_texto(p)})".replace("-", "−"),
             transform=ax.get_yaxis_transform(), ha="right", va="center", fontsize=11,
-            color=VINO if clara else TINTA2, fontweight="bold" if clara else "normal")
+            color=VINO if (clara or clave) else TINTA2, fontweight="bold" if (clara or clave) else "normal")
     y -= 0.2
     for _, r in sub.iterrows():
         y -= 0.8
@@ -415,6 +417,17 @@ for var, nombre, orden, etiq in grupos:
                 fontweight="bold", color=TINTA)
         yticks.append(y)
         ylabels.append(f"{etiq[r.grupo]}  (n = {r.n})")
+    if clave:
+        n_dos = int(sub.n.iloc[-1])
+        y -= 0.95
+        ax.text(-0.43, y, f"Prueba de conocimiento con dos preguntas sobre café. Quienes acertaron las dos compran más,\n"
+                          f"pero son solo {n_dos} personas: con más encuestas la diferencia podría confirmarse o desaparecer.",
+                transform=ax.get_yaxis_transform(), ha="left", va="center", fontsize=10.5, color=VINO,
+                style="italic", linespacing=1.4)
+        ax.add_patch(FancyBboxPatch((-0.45, y - 0.55), 1.47, y_tope - (y - 0.55),
+                                    boxstyle="round,pad=0,rounding_size=0.02", transform=ax.get_yaxis_transform(),
+                                    fill=False, edgecolor=VINO, lw=2.2, clip_on=False, zorder=5))
+        y -= 0.55
     y -= 0.75
 ax.set_yticks(yticks, ylabels, fontsize=11.5)
 ax.set_xlim(0, 1)
@@ -425,9 +438,9 @@ for s in ("bottom", "left"):
 ax.axvline(0.5, color=GRIS_CLARO, lw=1, zorder=0)
 encabezado(fig, "El estrato y el ingreso marcan una diferencia clara; en conocimiento, la muestra no alcanza",
            "De cada 100 clientes de cada grupo, cuántos comprarían una taza de filtrado a $12.000")
-pie(fig, "Puntos: diferencia entre el primer y el último grupo. “Clara” (vino): prueba ji cuadrado con p < 0,05, es decir, "
-         "una diferencia así casi nunca saldría solo por azar.\n“Puede ser azar” (gris): no se descarta que sea azar; "
-         "no prueba que no haya diferencia. Conocimiento = D4 y D5. El ingreso excluye a 12 personas. Asociaciones, no causas.")
+pie(fig, "Puntos: diferencia entre el primer y el último grupo. Barras vino: diferencia clara (ji cuadrado con p < 0,05), es decir, "
+         "casi nunca saldría solo por azar. Barras grises: no se descarta\nque sea azar, lo que no prueba que no haya diferencia. "
+         "El recuadro rojo marca la prueba de conocimiento (preguntas D4 y D5). El ingreso excluye a 12 personas. Asociaciones, no causas.")
 guardar(fig, "fig5_quien_paga_mas")
 
 # ===========================================================================
@@ -579,9 +592,9 @@ for ax, (var, titulo, orden) in zip(axes.flat, anexo):
     ax.axvline(P_REF, color=TINTA2, lw=0.9, ls=(0, (4, 3)))
     sub = comp[comp.variable == (var if var != "grupo_conoc4" else "conocimiento_4items (sensibilidad)")]
     pv = sub.p_valor.iloc[0]
-    ext = f"A $12.000: {sub.acepta_12000.iloc[0]:.0%} vs {sub.acepta_12000.iloc[-1]:.0%} · χ² {p_texto(pv)}"
+    ext = f"A $12.000: {sub.acepta_12000.iloc[0]:.0%} frente a {sub.acepta_12000.iloc[-1]:.0%}; χ² {p_texto(pv)}"
     if sub.esperada_menor_5.iloc[0] or min(ns) < 10:
-        ext += " · ⚠ casilla pequeña"
+        ext += " (⚠ casilla pequeña)"
     ax.set_title(titulo, pad=24, fontsize=12)
     ax.text(0, 1.03, ext, transform=ax.transAxes, fontsize=10, color=VINO if pv < 0.05 else TINTA2,
             fontweight="semibold" if pv < 0.05 else "normal")
@@ -598,7 +611,7 @@ for ax in axes[1, :]:
 for ax in axes[:, 0]:
     ax.set_ylabel("Compraría la taza")
 encabezado(fig, "Anexo A1. Curvas de aceptación por grupo",
-           "Porcentaje que compraría la taza a cada precio · línea punteada: precio de referencia de $12.000 · "
+           "Porcentaje que compraría la taza a cada precio. Línea punteada: precio de referencia de $12.000. "
            "más oscuro = nivel más alto")
 pie(fig, "χ²: grupo frente a la DAP en tres niveles (debajo, en o encima de $12.000); si una casilla esperada es menor "
          "que 5 se usan dos niveles (acepta $12.000 o no). En vino, p < 0,05.\nLas respuestas de una persona en la "
@@ -642,7 +655,7 @@ ax.set_xlabel("Intervalo de la DAP: precio aceptado – precio rechazado inmedia
 prom_L = d["dap_L"].fillna(0).mean()
 encabezado(fig, f"Anexo A2. El intervalo más común es de {pesos(iv.L[moda])} a {pesos(iv.U[moda])} "
                 f"({iv.pct[moda]:.0%} de los clientes)",
-           f"Distribución de la DAP según el peldaño donde dijo “sí” · promedio de los límites inferiores = "
+           f"Distribución de la DAP según el peldaño donde dijo “sí”. Promedio de los límites inferiores: "
            f"{pesos(round(prom_L, -2))} (es un mínimo)")
 pie(fig, "No se usa el punto medio del intervalo. “Menos de $6.000”: rechazó toda la escalera aplicada, que llegó "
          "hasta $6.000 (ver el registro de versiones). n = 81.")
